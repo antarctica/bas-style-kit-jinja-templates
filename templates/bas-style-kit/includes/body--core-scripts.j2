@@ -1,0 +1,3 @@
+{% for script in variables.site_scripts %}
+    <script src="{{ script.href }}" {% if script.integrity %}integrity="{{ script.integrity }}" crossorigin="anonymous"{% endif %}></script>
+{% endfor %}
