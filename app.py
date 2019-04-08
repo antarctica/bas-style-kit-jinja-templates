@@ -20,6 +20,7 @@ def render_layout(layout: str):
     layouts = [
         'blank',
         'html',
+        'bsk_base',
     ]
     if layout not in layouts:
         abort(404)
