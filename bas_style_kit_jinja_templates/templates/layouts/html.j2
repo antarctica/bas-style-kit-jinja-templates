@@ -1,0 +1,49 @@
+{% extends "bas_style_kit/layouts/blank.j2" %}
+
+{% block content_classes %}
+    {% if (config.bsk_templates.container_classes is defined) and config.bsk_templates.container_classes %}{{ config.bsk_templates.container_classes | join(' ') }}{% endif %}
+{% endblock %}
+
+{% block main_content_classes %}
+    {{ self.content_classes() }}
+    {% if (config.bsk_templates.main_container_classes is defined) and config.bsk_templates.main_container_classes %}{{ config.bsk_templates.main_container_classes | join(' ') }}{% endif %}
+{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+    <html lang="en-GB">
+        <head>
+            {% block head %}
+                {% include 'bas_style_kit/includes/head--core-metadata.j2' %}
+                {% include 'bas_style_kit/includes/head--seo-metadata.j2' %}
+                {% block pre_head_styles %}{% endblock %}
+                {% block styles %}
+                    {% with styles = config.bsk_templates.site_styles %}
+                        {% include 'bas_style_kit/includes/head--core-styles.j2' %}
+                    {% endwith %}
+                {% endblock %}
+            {% endblock %}
+        </head>
+        <body>
+            {% block body %}
+                {% include 'bas_style_kit/includes/body--back-to-top.j2' %}
+                {% block pre_main_content %}{% endblock %}
+                {% block main_content_container %}
+                    <main id="site-main-content" class="{{ self.main_content_classes() }}">
+                        {% block main_content %}
+                        {% endblock %}
+                    </main>
+                {% endblock %}
+                {% block post_main_content %}{% endblock %}
+                {% block scripts %}
+                    {% with scripts = config.bsk_templates.site_scripts %}
+                        {% include 'bas_style_kit/includes/body--core-scripts.j2' %}
+                    {% endwith %}
+                    {% if config.bsk_templates.site_analytics.id %}
+                        {% include 'bas_style_kit/includes/body--analytics-script.j2' %}
+                    {% endif %}
+                {% endblock %}
+            {% endblock %}
+        </body>
+    </html>
+{% endblock %}
