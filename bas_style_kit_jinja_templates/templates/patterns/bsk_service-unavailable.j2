@@ -1,0 +1,18 @@
+{% extends 'bas_style_kit/layouts/bsk_standard.j2' %}
+
+{% set availability = None %}
+
+{% block main_content_classes %}{{ super() }} bsk-pattern-service-unavailable{% endblock %}
+{% block main_content %}
+    <h1 class="bsk-page-header">Sorry, <em>{{ config.bsk_templates.bsk_site_nav_brand_text }}</em> is unavailable</h1>
+    {% if availability %}
+        <p class="bsk-lead">{{ availability }}</p>
+    {% elif availability == 'replaced' %}
+        <p class="bsk-lead">This service has been replaced and can longer be used.</p>
+    {% elif availability == 'closed' %}
+        <p class="bsk-lead">This service has been closed and can longer be used.</p>
+    {% else %}
+        <p class="bsk-lead">You will be able to use the service later.</p>
+    {% endif %}
+    {% block pattern_content %}{% endblock %}
+{% endblock %}

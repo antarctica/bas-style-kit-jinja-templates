@@ -31,4 +31,15 @@ def render_layout(layout: str):
     return render_template(f"app/layouts/{ layout }.j2")
 
 
+@app.route('/patterns/<pattern>')
+def render_pattern(pattern: str):
+    patterns = [
+        'page-not-found',
+        'problem-with-service',
+        'service-unavailable'
+    ]
+    if pattern not in patterns:
+        abort(404)
 
+    # noinspection PyUnresolvedReferences
+    return render_template(f"app/patterns/bsk_{ pattern }.j2")

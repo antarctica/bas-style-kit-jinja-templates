@@ -1,0 +1,9 @@
+{% extends 'bas_style_kit/layouts/bsk_standard.j2' %}
+
+{% block main_content_classes %}{{ super() }} bsk-pattern-page-not-found{% endblock %}
+{% block main_content %}
+    <h1 class="bsk-page-header">Page not found</h1>
+    <p>If you typed the web address, check it is correct.</p>
+    <p>If you pasted the web address, check you copied the entire address.</p>
+    <p>If the web address is correct or you selected a link or button, <a href="{{ config.bsk_templates.bsk_site_feedback_href }}">contact us</a> to let us know.</p>
+{% endblock %}
