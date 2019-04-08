@@ -1,0 +1,47 @@
+<nav class="bsk-navbar">
+    <div class="{{ content_classes }}">
+        <div class="bsk-navbar-header">
+            <button class="bsk-navbar-toggle bsk-collapsed" type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+                <span class="bsk-sr-only">Toggle navigation</span>
+                <span class="bsk-icon-bar"></span>
+                <span class="bsk-icon-bar"></span>
+                <span class="bsk-icon-bar"></span>
+            </button>
+            {% if config.bsk_templates.bsk_site_nav_brand_img_href %}
+                <a class="bsk-navbar-brand bsk-navbar-brand-image-{{ config.bsk_templates.bsk_site_nav_brand_img_size }}" href="{{ config.bsk_templates.bsk_site_nav_brand_href }}">
+                    {% if config.bsk_templates.bsk_site_nav_brand_text %}
+                        {{ config.bsk_templates.bsk_site_nav_brand_text }}
+                        <img src="{{ config.bsk_templates.bsk_site_nav_brand_img_href }}" />
+                    {% else %}
+                        <img src="{{ config.bsk_templates.bsk_site_nav_brand_img_href }}" />
+                    {% endif %}
+                </a>
+            {% else %}
+                <a class="bsk-navbar-brand" href="{{ config.bsk_templates.bsk_site_nav_brand_href }}">{{ config.bsk_templates.bsk_site_nav_brand_text }}</a>
+            {% endif %}
+        </div>
+        <div id="navbar-collapse" class="bsk-collapse bsk-navbar-collapse">
+            {% if config.bsk_templates.bsk_site_nav_primary %}
+                nav_menu(config.bsk_templates.bsk_site_nav_primary)
+            {% endif %}
+            {% if config.bsk_templates.bsk_site_nav_secondary %}
+                nav_menu(config.bsk_templates.bsk_site_nav_primary, 'bsk-navbar-right')
+            {% endif %}
+            {% if config.bsk_templates.bsk_site_nav_launcher %}
+                <ul class="bsk-nav bsk-navbar-nav bsk-navbar-right">
+                    <li class="bsk-dropdown">
+                        <a class="bsk-dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                            {{ config.bsk_templates.bsk_site_nav_launcher_title }}
+                            <span class="bsk-caret"></span>
+                        </a>
+                        <ul class="bsk-dropdown-menu">
+                            {% for item in config.bsk_templates.bsk_site_nav_launcher %}
+                                <li><a href="{{ item.href }}">{{ item.title }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</nav>

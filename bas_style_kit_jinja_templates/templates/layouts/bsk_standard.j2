@@ -1,0 +1,16 @@
+{% extends 'bas_style_kit/layouts/bsk_base.j2' %}
+{% include 'bas_style_kit/macros/bsk--nav.j2' %}
+
+{% block pre_main_content %}
+    {% with content_classes = self.content_classes() %}
+        {% include 'bas_style_kit/includes/bsk--body--standard-header.j2' %}
+    {% endwith %}
+{% endblock %}
+
+{% block main_content_classes %}{{ super() }}{% endblock %}
+
+{% block post_main_content %}
+    {% with content_classes = self.content_classes() %}
+        {% include 'bas_style_kit/includes/bsk--body--standard-footer.j2' %}
+    {% endwith %}
+{% endblock %}

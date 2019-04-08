@@ -1,0 +1,15 @@
+{% if 'bsk-container' in content_classes %}
+    {% set container_type = 'fixed' %}
+{% elif 'bsk-container-fluid' in content_classes %}
+    {% set container_type = 'fluid' %}
+{% else %}
+    {% set container_type = None %}
+{% endif %}
+<div class="bsk-fix-alert-static-top-{{ container_type }}-container-wrapper">
+    <div class="{{ content_classes }}">
+        <div class="bsk-alert bsk-alert-static-top bsk-alert-dismissible bsk-alert-solid bsk-alert-cookie-notice" data-bsk-role="cookie-notice">
+            <button class="bsk-close" type="button" data-dismiss="alert" aria-label="Close">&times;</button>
+            This website uses cookies to help us make it better - <a class="bsk-alert-link" href="{{ config.bsk_templates.bsk_site_footer_policies_cookies_href }}">find out more</a>
+        </div>
+    </div>
+</div>

@@ -36,3 +36,25 @@ class BskTemplates(object):
         ]
         self.bsk_container_classes = ['bsk-container']
         self.bsk_main_content_classes = []
+
+        self.bsk_site_nav_primary = []
+        self.bsk_site_nav_secondary = []
+        self.bsk_site_nav_launcher = [
+            {'title': 'BAS Home', 'href': 'https://www.bas.ac.uk'},
+            {'title': 'Discover BAS Data', 'href': 'https://data.bas.ac.uk'}
+        ]
+        self.bsk_site_nav_launcher_title = 'Part of British Antarctic Survey'
+        self.bsk_site_development_phase = 'alpha'
+        self.bsk_site_development_phase_custom = {
+            'label_classes': []
+        }
+        self.bsk_site_nav_brand_text = 'site title'
+        self.bsk_site_nav_brand_img_href = ''
+        self.bsk_site_nav_brand_href = '/'
+        self.bsk_site_feedback_href = '#'
+        self.bsk_site_footer_ogl_symbol_a_href = 'http://www.nationalarchives.gov.uk/doc/open-government-licence'
+        self.bsk_site_footer_ogl_text_href = 'http://www.nationalarchives.gov.uk/doc/open-government-licence'
+        self.bsk_site_footer_ogl_text_version = 'v3.0'
+        self.bsk_site_footer_policies_cookies_href = '#'
+        self.bsk_site_footer_policies_copyright_href = '#'
+        self.bsk_site_footer_policies_privacy_href = '#'

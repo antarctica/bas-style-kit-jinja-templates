@@ -12,6 +12,7 @@ app.jinja_loader = PrefixLoader({
 })
 app.config['bsk_templates'] = BskTemplates()
 app.config['bsk_templates'].site_title = 'BAS Style Kit Jinja Templates'
+app.config['bsk_templates'].bsk_site_nav_brand_text = 'BAS Style Kit Jinja Templates'
 app.config['bsk_templates'].site_description = 'A set of Jinja templates implementing the BAS Style Kit'
 
 
@@ -21,6 +22,7 @@ def render_layout(layout: str):
         'blank',
         'html',
         'bsk_base',
+        'bsk_standard'
     ]
     if layout not in layouts:
         abort(404)
