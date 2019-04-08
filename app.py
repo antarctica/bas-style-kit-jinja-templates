@@ -16,6 +16,12 @@ app.config['bsk_templates'].bsk_site_nav_brand_text = 'BAS Style Kit Jinja Templ
 app.config['bsk_templates'].site_description = 'A set of Jinja templates implementing the BAS Style Kit'
 
 
+@app.route('/')
+def index():
+    # noinspection PyUnresolvedReferences
+    return render_template(f"app/index.j2")
+
+
 @app.route('/layouts/<layout>')
 def render_layout(layout: str):
     layouts = [

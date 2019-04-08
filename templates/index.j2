@@ -1,0 +1,46 @@
+{% extends "bas_style_kit/layouts/html.j2" %}
+{% block main_content %}
+    <header>
+        <h1>BAS Style Kit - Jina templates</h1>
+        <p>This index uses the <em>HTML</em> layout and is intentionally unstyled.</p>
+    </header>
+    <section>
+        <h2>Layouts</h2>
+        <ul>
+            <li><a href="./layouts/blank">Blank</a></li>
+            <li><a href="./layouts/html">HTML</a></li>
+            <li><a href="./layouts/bsk_base">BAS Style Kit - Base</a></li>
+            <li><a href="./layouts/bsk_standard">BAS Style Kit - Standard</a></li>
+        </ul>
+    </section>
+    <section>
+        <h2>Patterns</h2>
+        <h3>Pages</h3>
+        <ul>
+            <li><a href="./patterns/page-not-found">Page not found</a></li>
+            <li><a href="./patterns/problem-with-service">Problem with this service (basic)</a></li>
+            <li><a href="./patterns/service-unavailable">Service unavailable (basic)</a></li>
+        </ul>
+    </section>
+    <section>
+        <h2>Variables</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Variable</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>config.bsk_templates.templates_version</code></td>
+                    <td><samp>{{ config.bsk_templates.templates_version }}</samp></td>
+                </tr>
+                <tr>
+                    <td><code>config.bsk_templates.bsk_version</code></td>
+                    <td><samp>{{ config.bsk_templates.bsk_version }}</samp></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+{% endblock %}
