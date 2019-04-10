@@ -21,7 +21,6 @@ from jinja2 import PrefixLoader, PackageLoader, FileSystemLoader
 from bas_style_kit_jinja_templates import BskTemplates
 
 app = Flask(__name__)
-app.jinja_env.add_extension('jinja2.ext.do')
 app.jinja_loader = PrefixLoader({
     'app': FileSystemLoader('templates'),
     'bas_style_kit': PackageLoader('bas_style_kit_jinja_templates'),
