@@ -5,5 +5,9 @@
     <h1 class="bsk-page-header">Page not found</h1>
     <p>If you typed the web address, check it is correct.</p>
     <p>If you pasted the web address, check you copied the entire address.</p>
-    <p>If the web address is correct or you selected a link or button, <a href="{{ config.bsk_templates.bsk_site_feedback_href }}">contact us</a> to let us know.</p>
+    <p>
+        If the web address is correct or you selected a link or button,
+        <a href="{{ config.bsk_templates.bsk_site_feedback_href }}">contact us</a> to let us know.
+    </p>
+    {% block pattern_content %}{% endblock %}
 {% endblock %}
