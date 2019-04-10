@@ -7,3 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.1.0] - 2019-04-10
+
+### Added
+
+* Initial version based on other themes/templates using version 0.5.0 of the Style Kit
