@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.2.0] - 2019-04-26
+
+### Added
+
+* Footer content block to allow custom footer content to be added
+
 ### Fixed
 
 * Correcting usage instructions in README
