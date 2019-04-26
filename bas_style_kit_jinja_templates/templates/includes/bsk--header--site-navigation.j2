@@ -1,3 +1,5 @@
+{% import 'bas_style_kit/macros/bsk--nav.j2' as bsk_nav_macros %}
+
 <nav class="bsk-navbar">
     <div class="{{ content_classes }}">
         <div class="bsk-navbar-header">
@@ -22,10 +24,10 @@
         </div>
         <div id="navbar-collapse" class="bsk-collapse bsk-navbar-collapse">
             {% if config.bsk_templates.bsk_site_nav_primary %}
-                nav_menu(config.bsk_templates.bsk_site_nav_primary)
+                {{ bsk_nav_macros.nav_menu(config.bsk_templates.bsk_site_nav_primary) }}
             {% endif %}
             {% if config.bsk_templates.bsk_site_nav_secondary %}
-                nav_menu(config.bsk_templates.bsk_site_nav_primary, 'bsk-navbar-right')
+                {{ bsk_nav_macros.nav_menu(config.bsk_templates.bsk_site_nav_secondary, 'bsk-navbar-right') }}
             {% endif %}
             {% if config.bsk_templates.bsk_site_nav_launcher %}
                 <ul class="bsk-nav bsk-navbar-nav bsk-navbar-right">

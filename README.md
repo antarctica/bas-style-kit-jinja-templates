@@ -40,20 +40,20 @@ app.config['bsk_templates'].bsk_site_footer_policies_privacy_href = '/legal/priv
 # Optional - add a custom CSS file with a relative URL
 app.config['bsk_templates'].site_styles.append({'href': '/css/app.css'})
 # Optional - add a custom JS file with a SRI value
-app.config['bsk_templates'].site_scripts.push({'href': 'https://example.com/js/example.js', 'integrity': 'abc123'})
+app.config['bsk_templates'].site_scripts.append({'href': 'https://example.com/js/example.js', 'integrity': 'abc123'})
 # Optional - enable Google Analytics
 app.config['bsk_templates'].site_analytics['id'] = '1234'
 # Optional - choose between the `bsk-container` (used by default) and `bsk-container-fluid` layout container
 app.config['bsk_templates'].bsk_container_classes = ['bsk-container']
 # Optional - add navigation menu items
-app.config['bsk_templates'].bsk_site_nav_primary.push({'title': 'Item', 'href': '#'})
-app.config['bsk_templates'].bsk_site_nav_secondary.push({
+app.config['bsk_templates'].bsk_site_nav_primary.append({'title': 'Item', 'href': '#'})
+app.config['bsk_templates'].bsk_site_nav_secondary.append({
     'title': 'Dropdown', 
     'items': [
         {'title': 'Sub-item 1', 'href': '#'}
     ]
 })
-app.config['bsk_templates'].bsk_site_nav_launcher.push({'title': 'Related service', 'href': 'https://example.com'})
+app.config['bsk_templates'].bsk_site_nav_launcher.append({'title': 'Related service', 'href': 'https://example.com'})
 
 
 @app.route('/')

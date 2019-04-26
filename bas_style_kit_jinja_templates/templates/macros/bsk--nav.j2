@@ -1,14 +1,14 @@
-{% macro nav_menu(items, classes) -%}
-    <ul class="bsk-nav bsk-navbar-nav {{ classes.join(' ') }}">
+{% macro nav_menu(items, classes=None) %}
+    <ul class="bsk-nav bsk-navbar-nav {% if classes is not none %}{{ classes.join(' ') }}{% endif %}">
         {% for item in items %}
-            {% if item.items %}
+            {% if 'items' in item %}
                 <li class="bsk-dropdown">
                     <a class="bsk-dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         {{ item.title }}
                         <span class="bsk-caret"></span>
                     </a>
                     <ul class="bsk-dropdown-menu">
-                        {% for sub_item in item.items %}
+                        {% for sub_item in item['items'] %}
                             <li><a href="{{ sub_item.href }}">{{ sub_item.title }}</a></li>
                         {% endfor %}
                     </ul>
@@ -18,4 +18,4 @@
             {% endif %}
         {% endfor %}
     </ul>
-{%- endmacro %}
+{% endmacro %}

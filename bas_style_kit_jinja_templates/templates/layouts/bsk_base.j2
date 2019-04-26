@@ -6,10 +6,10 @@
 {% endblock %}
 
 {% block styles %}
-    {{ super() }}
     {% with styles = config.bsk_templates.bsk_styles %}
         {% include 'bas_style_kit/includes/head--core-styles.j2' %}
     {% endwith %}
+    {{ super() }}
 {% endblock %}
 
 {% block content_classes %}
@@ -23,8 +23,8 @@
 {% endblock %}
 
 {% block scripts %}
-    {{ super() }}
     {% with scripts = config.bsk_templates.bsk_scripts %}
         {% include 'bas_style_kit/includes/body--core-scripts.j2' %}
     {% endwith %}
+    {{ super() }}
 {% endblock %}
