@@ -11,6 +11,17 @@
 
 {% block post_main_content %}
     {% with content_classes = self.content_classes() %}
-        {% include 'bas_style_kit/includes/bsk--body--standard-footer.j2' %}
+        <footer class="site-footer">
+            <div class="bsk-footer bsk-footer-default">
+                <div class="{{ content_classes }}">
+                    {% include 'bas_style_kit/includes/bsk--footer--is-something-wrong.j2' %}
+                    {% include 'bas_style_kit/includes/bsk--footer--back-to-top.j2' %}
+                    <div class="bsk-footer-divider" role="separator"></div>
+                    {% block footer_content %}{% endblock %}
+                    {% include 'bas_style_kit/includes/bsk--footer--governance.j2' %}
+                    {% include 'bas_style_kit/includes/bsk--footer--policy-links.j2' %}
+                </div>
+            </div>
+        </footer>
     {% endwith %}
 {% endblock %}
