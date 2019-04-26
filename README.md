@@ -302,6 +302,24 @@ app.config['bsk_templates'] = BskTemplates()
 app.config['bsk_templates'].bsk_site_analytics['id'] = 'UA-12345678'
 ```
 
+### Footer content
+
+Add custom footer content to the `footer_content` block. It will be shown between the 
+[divider](https://style-kit.web.bas.ac.uk/components/footer/#divider) and 
+[Governance](https://style-kit.web.bas.ac.uk/components/footer/#governance) footer components.
+
+It is recommended to include a [spacer](https://style-kit.web.bas.ac.uk/components/footer/#spacer) component after any
+footer content to balance the whitespace within the footer.
+
+For example:
+
+```jinja2
+{% block footer_content %}
+<div>Footer content</div>
+<div role="separator" class="bsk-footer-spacer"></div>
+{% endblock %}
+```
+
 ## Components
 
 All components are located in the `bas_style_kit_jinja_templates` package. Variables are 
