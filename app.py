@@ -14,20 +14,21 @@ app.config['bsk_templates'].site_title = 'BAS Style Kit Jinja Templates'
 app.config['bsk_templates'].bsk_site_nav_brand_text = 'BAS Style Kit Jinja Templates'
 app.config['bsk_templates'].site_description = 'A set of Jinja templates implementing the BAS Style Kit'
 app.config['bsk_templates'].bsk_site_nav_primary.append({
-    'title': 'Item',
+    'value': 'Item',
     'href': '#'
 })
 app.config['bsk_templates'].bsk_site_nav_secondary.append({
-    'title': 'Another Item',
+    'value': 'Another Item',
     'items': [
         {
-            'title': 'Sub-Item',
-            'href': '#'
+            'value': 'Sub-Item',
+            'href': '#',
+            'target': '_blank'
         }
     ]
 })
 app.config['bsk_templates'].bsk_site_nav_launcher.append({
-    'title': 'Launcher Item',
+    'value': 'Launcher Item',
     'href': '#'
 })
 

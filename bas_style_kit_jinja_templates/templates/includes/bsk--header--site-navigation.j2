@@ -38,7 +38,11 @@
                         </a>
                         <ul class="bsk-dropdown-menu">
                             {% for item in config.bsk_templates.bsk_site_nav_launcher %}
-                                <li><a href="{{ item.href }}">{{ item.title }}</a></li>
+                                <li>
+                                    <a {% for attribute, value in item.items() %}{% if attribute != 'value' %}{{ attribute }}="{{ value }}"{% endif %}{% endfor %}>
+                                        {{ item.value }}
+                                    </a>
+                                </li>
                             {% endfor %}
                         </ul>
                     </li>
