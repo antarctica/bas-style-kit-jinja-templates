@@ -40,8 +40,8 @@ class BskTemplates(object):
         self.bsk_site_nav_primary = []
         self.bsk_site_nav_secondary = []
         self.bsk_site_nav_launcher = [
-            {'title': 'BAS Home', 'href': 'https://www.bas.ac.uk'},
-            {'title': 'Discover BAS Data', 'href': 'https://data.bas.ac.uk'}
+            {'value': 'BAS Home', 'href': 'https://www.bas.ac.uk'},
+            {'value': 'Discover BAS Data', 'href': 'https://data.bas.ac.uk'}
         ]
         self.bsk_site_nav_launcher_title = 'Part of British Antarctic Survey'
         self.bsk_site_development_phase = 'alpha'

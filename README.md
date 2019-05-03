@@ -46,14 +46,14 @@ app.config['bsk_templates'].site_analytics['id'] = '1234'
 # Optional - choose between the `bsk-container` (used by default) and `bsk-container-fluid` layout container
 app.config['bsk_templates'].bsk_container_classes = ['bsk-container']
 # Optional - add navigation menu items
-app.config['bsk_templates'].bsk_site_nav_primary.append({'title': 'Item', 'href': '#'})
+app.config['bsk_templates'].bsk_site_nav_primary.append({'value': 'Item', 'href': '#'})
 app.config['bsk_templates'].bsk_site_nav_secondary.append({
-    'title': 'Dropdown', 
+    'value': 'Dropdown', 
     'items': [
-        {'title': 'Sub-item 1', 'href': '#'}
+        {'value': 'Sub-item 1', 'href': '#', 'target': '_blank'}
     ]
 })
-app.config['bsk_templates'].bsk_site_nav_launcher.append({'title': 'Related service', 'href': 'https://example.com'})
+app.config['bsk_templates'].bsk_site_nav_launcher.append({'value': 'Related service', 'href': 'https://example.com'})
 
 
 @app.route('/')
@@ -193,9 +193,10 @@ Menu item objects have the following properties:
 
 | Property    | Data Type | Required | Allowed Values             | Example Value                              | Notes                                 |
 | ----------- | --------- | -------- | -------------------------- | ------------------------------------------ | ------------------------------------- |
-| `title`     | String    | Yes      | Any string                 | *About*                                    | -                                     |
+| `value`     | String    | Yes      | Any string                 | *About*                                    | -                                     |
 | `href`      | String    | Yes      | Any URL                    | */about* / *https://www.example.com/about* | Ignored if `items` set                |
-| `items`     | Array     | No       | Array of menu item objects | *-*                                        | Ignored for navigation launcher items |
+| `items`     | Array     | No       | Array of menu item objects | -                                          | Ignored for navigation launcher items |
+| *Any*       | String    | No       | As per attribute           | -                                          | Arbitrary attribute/value key/values  |
 
 **Note:** The `items` property is only recursed once, deeper objects will be ignored.
 
@@ -203,22 +204,23 @@ For example (using a Flask application):
 
 ```python
 app.config['bsk_templates'] = BskTemplates()
-app.config['bsk_templates'].bsk_site_nav_primary.push({'title': 'Item', 'href': '/about'})
+app.config['bsk_templates'].bsk_site_nav_primary.push({'value': 'Item', 'href': '/about'})
+app.config['bsk_templates'].bsk_site_nav_primary.push({'value': 'Another Item', 'href': '#', 'target': '_blank'})
 ```
 
 ```python
 app.config['bsk_templates'] = BskTemplates()
 app.config['bsk_templates'].bsk_site_nav_secondary.push({
-    'title': 'Dropdown', 
+    'value': 'Dropdown', 
     'items': [
-        {'title': 'Sub-item 1', 'href': 'https://www.example.com'}
+        {'value': 'Sub-item 1', 'href': 'https://www.example.com'}
     ]
 })
 ```
 
 ```python
 app.config['bsk_templates'] = BskTemplates()
-app.config['bsk_templates'].bsk_site_nav_launcher.push({'title': 'Related service', 'href': 'https://example.com'})
+app.config['bsk_templates'].bsk_site_nav_launcher.push({'value': 'Related service', 'href': 'https://example.com'})
 ```
 
 **Note:** These templates do not support highlighting active navigation items. You will need to add the .bsk-active
