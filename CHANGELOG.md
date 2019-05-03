@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 * Navigation item objects now support arbitrary attribute/value key/values  
+* Automatic active navigation item support for absolute URL matches
+* Manual active navigation item support for dynamic URL matches
 
 ### Fixed
 

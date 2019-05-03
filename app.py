@@ -27,6 +27,15 @@ app.config['bsk_templates'].bsk_site_nav_secondary.append({
         }
     ]
 })
+app.config['bsk_templates'].bsk_site_nav_secondary.append({
+    'value': 'Features',
+    'items': [
+        {
+            'value': 'Active nav item',
+            'href': '/features/active-nav-item/123abc'
+        }
+    ]
+})
 app.config['bsk_templates'].bsk_site_nav_launcher.append({
     'value': 'Launcher Item',
     'href': '#'
@@ -66,3 +75,13 @@ def render_pattern(pattern: str):
 
     # noinspection PyUnresolvedReferences
     return render_template(f"app/patterns/bsk_{ pattern }.j2")
+
+
+@app.route('/features/active-nav-item/<dynamic_value>')
+def render_feature_active_nav_item(dynamic_value: str):
+    # noinspection PyUnresolvedReferences
+    return render_template(
+        f"app/features/active_nav_item.j2",
+        value=dynamic_value,
+        active_nav_item='/features/active-nav-item/123abc'
+    )
