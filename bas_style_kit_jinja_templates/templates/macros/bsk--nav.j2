@@ -1,5 +1,5 @@
 {% macro nav_menu(items, active_nav_item, classes=None) %}
-    <ul class="bsk-nav bsk-navbar-nav {% if classes is not none %}{{ classes.join(' ') }}{% endif %}">
+    <ul class="bsk-nav bsk-navbar-nav {% if classes is not none %}{{ ' '.join(classes) }}{% endif %}">
         {% for item in items %}
             {% if 'items' in item %}
                 <li class="bsk-dropdown {% for sub_item in item['items'] %}{% if sub_item.href == request.path or sub_item.href == active_nav_item %}bsk-active{% endif %}{% endfor %}">

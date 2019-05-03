@@ -26,9 +26,6 @@
             {% if config.bsk_templates.bsk_site_nav_primary %}
                 {{ bsk_nav_macros.nav_menu(config.bsk_templates.bsk_site_nav_primary, active_nav_item) }}
             {% endif %}
-            {% if config.bsk_templates.bsk_site_nav_secondary %}
-                {{ bsk_nav_macros.nav_menu(config.bsk_templates.bsk_site_nav_secondary, active_nav_item, 'bsk-navbar-right') }}
-            {% endif %}
             {% if config.bsk_templates.bsk_site_nav_launcher %}
                 <ul class="bsk-nav bsk-navbar-nav bsk-navbar-right">
                     <li class="bsk-dropdown">
@@ -47,6 +44,9 @@
                         </ul>
                     </li>
                 </ul>
+            {% endif %}
+            {% if config.bsk_templates.bsk_site_nav_secondary %}
+                {{ bsk_nav_macros.nav_menu(config.bsk_templates.bsk_site_nav_secondary, active_nav_item, ['bsk-navbar-right']) }}
             {% endif %}
         </div>
     </div>

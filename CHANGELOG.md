@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 * Correcting formatting of footer governance links
+* Secondary navigation menu support
 
 ### Changed
 
