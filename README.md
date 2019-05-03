@@ -122,11 +122,12 @@ Each file reference consists of an object with these properties:
 | `href`      | String    | Yes      | Any URL        | */css/app.css* / *https://example.com/js/app.js*      |
 | `integrity` | String    | No       | Any SRI value  | *sha256-ClILH8AIH4CkAybtlKhzqqQUYR4eSDiNTK5LIWfF4qQ=* |
 
-For example (using a Flask application):
+For example (using a Flask application with a `css/app.css` file with the default 
+[static files route](http://flask.pocoo.org/docs/1.0/tutorial/static/)):
 
 ```python
 app.config['bsk_templates'] = BskTemplates()
-app.config['bsk_templates'].site_styles.append({'href': '/css/app.css'})
+app.config['bsk_templates'].site_styles.append({'href': '/static/css/app.css'})
 ```
 
 The `integrity` property is used to specify a 
@@ -135,13 +136,6 @@ a resource. If specified an `integrity` attribute and will be added to the gener
 attribute will also be added for 
 [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) support with a 
 hard-coded, anonymous, value.
-
-For example (using a Flask application):
-
-```python
-app.config['bsk_templates'] = BskTemplates()
-app.config['bsk_templates'].site_styles.append({'href': 'assets/css/app.css', 'integrity': 'sha256-abc123='})
-```
 
 #### Using custom CSS/JS inline content
 

@@ -19,6 +19,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * Correcting formatting of footer governance links
 
+### Changed
+
+* Improved documentation on including custom CSS files in a Flask application
+
 ## [0.2.0] - 2019-04-26
 
 ### Added
