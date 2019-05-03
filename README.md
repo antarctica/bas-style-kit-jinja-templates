@@ -122,11 +122,12 @@ Each file reference consists of an object with these properties:
 | `href`      | String    | Yes      | Any URL        | */css/app.css* / *https://example.com/js/app.js*      |
 | `integrity` | String    | No       | Any SRI value  | *sha256-ClILH8AIH4CkAybtlKhzqqQUYR4eSDiNTK5LIWfF4qQ=* |
 
-For example (using a Flask application):
+For example (using a Flask application with a `css/app.css` file with the default 
+[static files route](http://flask.pocoo.org/docs/1.0/tutorial/static/)):
 
 ```python
 app.config['bsk_templates'] = BskTemplates()
-app.config['bsk_templates'].site_styles.append({'href': '/css/app.css'})
+app.config['bsk_templates'].site_styles.append({'href': '/static/css/app.css'})
 ```
 
 The `integrity` property is used to specify a 
@@ -135,13 +136,6 @@ a resource. If specified an `integrity` attribute and will be added to the gener
 attribute will also be added for 
 [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) support with a 
 hard-coded, anonymous, value.
-
-For example (using a Flask application):
-
-```python
-app.config['bsk_templates'] = BskTemplates()
-app.config['bsk_templates'].site_styles.append({'href': 'assets/css/app.css', 'integrity': 'sha256-abc123='})
-```
 
 #### Using custom CSS/JS inline content
 
@@ -223,10 +217,31 @@ app.config['bsk_templates'] = BskTemplates()
 app.config['bsk_templates'].bsk_site_nav_launcher.push({'value': 'Related service', 'href': 'https://example.com'})
 ```
 
-**Note:** These templates do not support highlighting active navigation items. You will need to add the .bsk-active
-class to the currently active menu item, and if relevant, sub-item, manually.
+#### Active navigation items
 
-#### Navbar branding
+These templates will automatically add the `.bsk-active` class to the relevant navigation item, and if relevant, 
+sub-item, where its `href` attribute exactly matches the current URL given by `{{ request.path }}`.
+
+For example for a navigation item `{'value': 'About', 'href': '/about'}`, when visiting `https://www.example/about`,
+the about navigation item will be made active, as the current path `/about` matches the `href` attribute.
+
+This support doesn't support URL patterns, such as `/foo/{id}` where `{id}` is a dynamic value. In these cases the 
+`active_nav_item` variable can be set to the `href` value of a navigation item to make it active explicitly.
+
+For example (using flask application):
+
+```python
+app.config['bsk_templates'] = BskTemplates()
+app.config['bsk_templates'].bsk_site_nav_primary.push({'value': 'Foo', 'href': '/foo'})
+
+@app.route('/foo/<foo_id>')
+def foo_details(foo_id: str):
+    foo = get_foo(foo_id)
+
+    return render_template(f"app/views/foo-details.j2", foo=foo, active_nav_item='/foo')
+```
+
+### Navbar branding
 
 Navbars are used to display the name/identity of a website or application, to remind users where they are. These 
 elements are referred to as 'brand' elements within the Style Kit.

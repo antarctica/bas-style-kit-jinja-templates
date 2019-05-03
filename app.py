@@ -14,18 +14,60 @@ app.config['bsk_templates'].site_title = 'BAS Style Kit Jinja Templates'
 app.config['bsk_templates'].bsk_site_nav_brand_text = 'BAS Style Kit Jinja Templates'
 app.config['bsk_templates'].site_description = 'A set of Jinja templates implementing the BAS Style Kit'
 app.config['bsk_templates'].bsk_site_nav_primary.append({
+    'value': 'Layouts',
+    'items': [
+        {
+            'value': 'Blank',
+            'href': '/layouts/blank'
+        },
+        {
+            'value': 'HTML',
+            'href': '/layouts/html'
+        },
+        {
+            'value': 'BSK Base',
+            'href': '/layouts/bsk_base'
+        },
+        {
+            'value': 'BSK Standard',
+            'href': '/layouts/bsk_standard'
+        }
+    ]
+})
+app.config['bsk_templates'].bsk_site_nav_primary.append({
+    'value': 'Patterns',
+    'items': [
+        {
+            'value': 'Page not found',
+            'href': '/patterns/page-not-found'
+        },
+        {
+            'value': 'Problem with this service (basic)',
+            'href': '/patterns/problem-with-service'
+        },
+        {
+            'value': 'Service unavailable (basic)',
+            'href': '/patterns/service-unavailable'
+        }
+    ]
+})
+app.config['bsk_templates'].bsk_site_nav_primary.append({
+    'value': 'Features',
+    'items': [
+        {
+            'value': 'Active nav item',
+            'href': '/features/active-nav-item/123abc'
+        }
+    ]
+})
+app.config['bsk_templates'].bsk_site_nav_primary.append({
     'value': 'Item',
     'href': '#'
 })
 app.config['bsk_templates'].bsk_site_nav_secondary.append({
     'value': 'Another Item',
-    'items': [
-        {
-            'value': 'Sub-Item',
-            'href': '#',
-            'target': '_blank'
-        }
-    ]
+    'href': '#',
+    'target': '_blank'
 })
 app.config['bsk_templates'].bsk_site_nav_launcher.append({
     'value': 'Launcher Item',
@@ -66,3 +108,13 @@ def render_pattern(pattern: str):
 
     # noinspection PyUnresolvedReferences
     return render_template(f"app/patterns/bsk_{ pattern }.j2")
+
+
+@app.route('/features/active-nav-item/<dynamic_value>')
+def render_feature_active_nav_item(dynamic_value: str):
+    # noinspection PyUnresolvedReferences
+    return render_template(
+        f"app/features/active_nav_item.j2",
+        value=dynamic_value,
+        active_nav_item='/features/active-nav-item/123abc'
+    )

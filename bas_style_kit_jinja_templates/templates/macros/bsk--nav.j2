@@ -1,15 +1,15 @@
-{% macro nav_menu(items, classes=None) %}
-    <ul class="bsk-nav bsk-navbar-nav {% if classes is not none %}{{ classes.join(' ') }}{% endif %}">
+{% macro nav_menu(items, active_nav_item, classes=None) %}
+    <ul class="bsk-nav bsk-navbar-nav {% if classes is not none %}{{ ' '.join(classes) }}{% endif %}">
         {% for item in items %}
             {% if 'items' in item %}
-                <li class="bsk-dropdown">
+                <li class="bsk-dropdown {% for sub_item in item['items'] %}{% if sub_item.href == request.path or sub_item.href == active_nav_item %}bsk-active{% endif %}{% endfor %}">
                     <a class="bsk-dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         {{ item.value }}
                         <span class="bsk-caret"></span>
                     </a>
                     <ul class="bsk-dropdown-menu">
                         {% for sub_item in item['items'] %}
-                            <li>
+                            <li {% if sub_item.href == request.path or sub_item.href == active_nav_item %}class="bsk-active"{% endif %}>
                                 <a {% for attribute, value in sub_item.items() %}{% if attribute != 'value' %}{{ attribute }}="{{ value }}"{% endif %}{% endfor %}>
                                 {{ sub_item.value }}
                                 </a>
@@ -18,7 +18,7 @@
                     </ul>
                 </li>
             {% else %}
-                <li>
+                <li {% if item.href == request.path or item.href == active_nav_item %}class="bsk-active"{% endif %}>
                     <a {% for attribute, value in item.items() %}{% if attribute != 'value' %}{{ attribute }}="{{ value }}"{% endif %}{% endfor %}>
                     {{ item.value }}
                     </a>
