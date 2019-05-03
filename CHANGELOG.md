@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * Navigation item objects now support arbitrary attribute/value key/values  
 
+### Fixed
+
+* Correcting formatting of footer governance links
+
 ## [0.2.0] - 2019-04-26
 
 ### Added
