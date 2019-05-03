@@ -219,7 +219,6 @@ app.config['bsk_templates'].bsk_site_nav_launcher.push({'value': 'Related servic
 
 #### Active navigation items
 
-#### Navbar branding
 These templates will automatically add the `.bsk-active` class to the relevant navigation item, and if relevant, 
 sub-item, where its `href` attribute exactly matches the current URL given by `{{ request.path }}`.
 
@@ -242,6 +241,7 @@ def foo_details(foo_id: str):
     return render_template(f"app/views/foo-details.j2", foo=foo, active_nav_item='/foo')
 ```
 
+### Navbar branding
 
 Navbars are used to display the name/identity of a website or application, to remind users where they are. These 
 elements are referred to as 'brand' elements within the Style Kit.

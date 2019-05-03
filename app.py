@@ -14,20 +14,44 @@ app.config['bsk_templates'].site_title = 'BAS Style Kit Jinja Templates'
 app.config['bsk_templates'].bsk_site_nav_brand_text = 'BAS Style Kit Jinja Templates'
 app.config['bsk_templates'].site_description = 'A set of Jinja templates implementing the BAS Style Kit'
 app.config['bsk_templates'].bsk_site_nav_primary.append({
-    'value': 'Item',
-    'href': '#'
-})
-app.config['bsk_templates'].bsk_site_nav_secondary.append({
-    'value': 'Another Item',
+    'value': 'Layouts',
     'items': [
         {
-            'value': 'Sub-Item',
-            'href': '#',
-            'target': '_blank'
+            'value': 'Blank',
+            'href': '/layouts/blank'
+        },
+        {
+            'value': 'HTML',
+            'href': '/layouts/html'
+        },
+        {
+            'value': 'BSK Base',
+            'href': '/layouts/bsk_base'
+        },
+        {
+            'value': 'BSK Standard',
+            'href': '/layouts/bsk_standard'
         }
     ]
 })
-app.config['bsk_templates'].bsk_site_nav_secondary.append({
+app.config['bsk_templates'].bsk_site_nav_primary.append({
+    'value': 'Patterns',
+    'items': [
+        {
+            'value': 'Page not found',
+            'href': '/patterns/page-not-found'
+        },
+        {
+            'value': 'Problem with this service (basic)',
+            'href': '/patterns/problem-with-service'
+        },
+        {
+            'value': 'Service unavailable (basic)',
+            'href': '/patterns/service-unavailable'
+        }
+    ]
+})
+app.config['bsk_templates'].bsk_site_nav_primary.append({
     'value': 'Features',
     'items': [
         {
@@ -35,6 +59,15 @@ app.config['bsk_templates'].bsk_site_nav_secondary.append({
             'href': '/features/active-nav-item/123abc'
         }
     ]
+})
+app.config['bsk_templates'].bsk_site_nav_primary.append({
+    'value': 'Item',
+    'href': '#'
+})
+app.config['bsk_templates'].bsk_site_nav_secondary.append({
+    'value': 'Another Item',
+    'href': '#',
+    'target': '_blank'
 })
 app.config['bsk_templates'].bsk_site_nav_launcher.append({
     'value': 'Launcher Item',
