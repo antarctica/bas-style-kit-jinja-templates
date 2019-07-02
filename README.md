@@ -6,7 +6,8 @@ A set of [Jinja2](http://jinja.pocoo.org) templates implementing the [BAS Style 
 
 ### Pip package
 
-The recommended way to get these templates is installing its PyPi package, `bas-style-kit-jekyll-templates`.
+The recommended way to get these templates is installing its PyPi package, 
+[`bas-style-kit-jekyll-templates`](https://pypi.org/project/bas-style-kit-jinja-templates/).
 
 ## Usage
 
@@ -422,7 +423,7 @@ Layouts can be used using the `extend` keyword and defining content in the relev
 For example:
 
 ```jinja2
-{% exnteds 'bas_style_kit/layouts/bsk_standard.j2' %}
+{% extends 'bas_style_kit/layouts/bsk_standard.j2' %}
 
 {% block main_content %}
 Layout content
