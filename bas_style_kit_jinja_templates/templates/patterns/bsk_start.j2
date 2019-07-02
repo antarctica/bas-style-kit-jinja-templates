@@ -1,0 +1,27 @@
+{% extends 'bas_style_kit/layouts/bsk_standard.j2' %}
+
+{% block main_content_classes %}{{ super() }} bsk-pattern-start{% endblock %}
+{% block main_content %}
+    <h1 class="bsk-page-header">{{ config.bsk_templates.bsk_site_nav_brand_text }}</h1>
+
+    <section class="bsk-service-uses">
+        <h2 class="bsk-h3">Use this service to:</h2>
+        {% block pattern_content_uses %}{% endblock %}
+    </section>
+
+    <section class="bsk-call-to-action">
+        {% if call_to_action_variant and call_to_action_variant == 'sign-in-microsoft' %}
+            <a class="bsk-btn bsk-btn-ms-account bsk-btn-lg" href="{{ call_to_action_href }}">
+                <object class="bsk-ms-pictogram" type="image/svg+xml" data="https://cdn.web.bas.ac.uk/bas-style-kit/{{ config.bsk_templates.bsk_version }}/img/logos-symbols/ms-pictogram.svg"></object>
+                Sign in to Start
+            </a>
+        {% else %}
+            <a class="bsk-btn bsk-btn-primary bsk-btn-lg" href="{{ call_to_action_href }}">
+                Start Now
+                <i class="fa-fw fas fa-chevron-right"></i>
+            </a>
+        {% endif %}
+    </section>
+
+    {% block pattern_content %}{% endblock %}
+{% endblock %}

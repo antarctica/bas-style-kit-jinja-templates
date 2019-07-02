@@ -628,6 +628,64 @@ Contact the <a href="mailto:servicedesk.bas.ac.uk">BAS IT Service Desk</a> for m
 {% endblock %}
 ```
 
+##### Start
+
+Variables:
+
+`call_to_action_url`
+: Set to the href the call to action button should go to
+
+`call_to_action_variant`
+: Set to `default` for a standard 'start now' call to action button
+  Set to `sign-in-microsoft` for a combined 'sign-in to continue' and 'start now' button
+
+Blocks:
+
+`pattern_content_uses`
+: Set to an unordered list of items for the 'use this service to:' list
+
+`pattern_content`
+: Additional, optional, content such as 'before you begin' or 'more information' sections
+
+For example:
+
+(basic variant)
+
+```jinja2
+{% extends 'bas_style_kit/patterns/bsk_start.j2' %}
+
+{% block pattern_content_uses %}
+<ul>
+    <li>A task</li>
+    <li>Another task</li>
+</ul>
+{% endblock %}
+```
+
+(more information variant)
+
+```jinja2
+{% extends 'bas_style_kit/patterns/bsk_start.j2' %}
+
+{% block pattern_content_uses %}
+    <ul>
+        <li>A task</li>
+        <li>Another task</li>
+    </ul>
+{% endblock %}
+
+{% block pattern_content %}
+    <section class="bsk-before-you-start">
+        <h2 class="bsk-h3">Before you start</h2>
+        <p>Before you start information</p>
+    </section>
+    <section class="bsk-more-information">
+        <h2 class="bsk-h3">More information</h2>
+        <p>More information</p>
+    </section>
+{% endblock %}
+```
+
 ## Development
 
 A docker container ran through Docker Compose is used as a development environment for this project. It includes 

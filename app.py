@@ -13,6 +13,10 @@ app.config['bsk_templates'] = BskTemplates()
 app.config['bsk_templates'].site_title = 'BAS Style Kit Jinja Templates'
 app.config['bsk_templates'].bsk_site_nav_brand_text = 'BAS Style Kit Jinja Templates'
 app.config['bsk_templates'].site_description = 'A set of Jinja templates implementing the BAS Style Kit'
+app.config['bsk_templates'].site_styles.append({
+    'href': 'https://cdn.web.bas.ac.uk/libs/font-awesome-pro/5.9.0/css/all.min.css',
+    'integrity': 'sha256-kanXop/o8YI8mee6ao6HKghRywSQiUisB6pXb6HRsWk='
+})
 app.config['bsk_templates'].bsk_site_nav_primary.append({
     'value': 'Layouts',
     'items': [
@@ -48,6 +52,18 @@ app.config['bsk_templates'].bsk_site_nav_primary.append({
         {
             'value': 'Service unavailable (basic)',
             'href': '/patterns/service-unavailable'
+        },
+        {
+            'value': 'Start (basic)',
+            'href': '/patterns/start-basic'
+        },
+        {
+            'value': 'Start (more information)',
+            'href': '/patterns/start-info'
+        },
+        {
+            'value': 'Start (sign-in, Microsoft)',
+            'href': '/patterns/start-sign-in-microsoft'
         }
     ]
 })
@@ -101,7 +117,10 @@ def render_pattern(pattern: str):
     patterns = [
         'page-not-found',
         'problem-with-service',
-        'service-unavailable'
+        'service-unavailable',
+        'start-basic',
+        'start-info',
+        'start-sign-in-microsoft'
     ]
     if pattern not in patterns:
         abort(404)

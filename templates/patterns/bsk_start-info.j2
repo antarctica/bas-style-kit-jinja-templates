@@ -1,0 +1,26 @@
+{% extends 'bas_style_kit/patterns/bsk_start.j2' %}
+
+{% set call_to_action_href = '#' %}
+
+{% block pattern_content_uses %}
+    <ul>
+        <li>A task</li>
+        <li>Another action</li>
+    </ul>
+{% endblock %}
+
+{% block pattern_content %}
+    <section class="bsk-before-you-start">
+        <h2 class="bsk-h3">Before you start</h2>
+        <p>You need some information to use this service.</p>
+        <p>You will need to <a href=#">contact the Sample Team></a> to be allowed to perform an action.</p>
+        <p>You can also use <a href=#">Another service></a> to do something similar.</p>
+        <p>It typically takes 30 minutes to perform an action.</p>
+        <p>You can save your progress and continue later if needed.</p>
+    </section>
+    <section class="bsk-more-information">
+        <h2 class="bsk-h3">More information</h2>
+        <p>See the <a href="#">BAS Digital Workplace</a> for information on how to use this service.</p>
+        <p>You can also <a href="#">contact the Sample Team</a> for additional support.</p>
+    </section>
+{% endblock %}
