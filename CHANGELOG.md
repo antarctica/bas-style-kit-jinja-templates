@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.4.0] - 2019-04-26 [BREAKING!]
+
 ### Added
 
 * 'Sign-in' page pattern
@@ -16,13 +18,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 
 * Corrected use of deprecated CDN locations
+* Wrong change log heading
 
 ### Changed
 
 * README tweaks
 * Updating internal Flask app dependencies
 
-## [0.2.0] - 2019-04-26 [BREAKING!]
+## [0.3.0] - 2019-04-26 [BREAKING!]
 
 ### Changed [BREAKING!]
 
