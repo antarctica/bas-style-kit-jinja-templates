@@ -12,7 +12,7 @@
 {% block post_main_content %}
     {% with content_classes = self.content_classes() %}
         <footer class="site-footer">
-            <div class="bsk-footer bsk-footer-default">
+            <div class="{{ config.bsk_templates.bsk_footer_classes | join(' ') }}">
                 <div class="{{ content_classes }}">
                     {% include 'bas_style_kit/includes/bsk--footer--is-something-wrong.j2' %}
                     {% include 'bas_style_kit/includes/bsk--footer--back-to-top.j2' %}

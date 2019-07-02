@@ -530,6 +530,9 @@ These variables may, but don't need to be, changed or set for each website or ap
 `bsk_main_content_classes`
 : Array of Style Kit classes which should only be applied to main page content
 
+`bsk_footer_classes`
+: Array of Style Kit classes which should be applied to the standard footer element
+
 `bsk_site_favicon`
 : Name of the [Favicon](https://style-kit.web.bas.ac.uk/core/favicon) to include (valid options: [`default`])
 

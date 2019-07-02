@@ -36,6 +36,10 @@ class BskTemplates(object):
         ]
         self.bsk_container_classes = ['bsk-container']
         self.bsk_main_content_classes = []
+        self.bsk_footer_classes = [
+            'bsk-footer',
+            'bsk-footer-default'
+        ]
 
         self.bsk_site_nav_primary = []
         self.bsk_site_nav_secondary = []
