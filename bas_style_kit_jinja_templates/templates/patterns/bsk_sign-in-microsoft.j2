@@ -1,0 +1,21 @@
+{% extends 'bas_style_kit/layouts/bsk_standard.j2' %}
+
+{% block main_content_classes %}{{ super() }} bsk-pattern-sign-in{% endblock %}
+{% block main_content %}
+    <h1 class="bsk-page-header">Please sign-in to continue</h1>
+    <p class="bsk-lead">We need to check you are allowed to use this part of this service.</p>
+
+    <section class="bsk-call-to-action">
+        <a class="bsk-btn bsk-btn-ms-account bsk-btn-lg" href="{{ call_to_action_href }}">
+            <object class="bsk-ms-pictogram" type="image/svg+xml" data="https://cdn.web.bas.ac.uk/bas-style-kit/{{ config.bsk_templates.bsk_version }}/img/logos-symbols/ms-pictogram.svg"></object>
+            Sign in to Continue
+        </a>
+    </section>
+
+    <section class="bsk-sign-in-information">
+        <p>Use the account you use for your NERC email to sign into this service.</p>
+        <p><a href="mailto:servicedesk@bas.ac.uk"> Contact the IT Service Desk</a> if you are unable to sign in.</p>
+    </section>
+
+    {% block pattern_content %}{% endblock %}
+{% endblock %}

@@ -338,6 +338,9 @@ For example:
 {% endblock %}
 ```
 
+You can also set custom classes on the footer element by appending to the `bsk_footer_classes` list, or replacing all 
+classes by overriding the list.
+
 ## Components
 
 All components are located in the `bas_style_kit_jinja_templates` package. Variables are 
@@ -596,9 +599,11 @@ Additional information clarifying details or circumstances.
 {% endblock %}
 ```
 
-Some patterns support multiple variants, or can be configured, using variables described in the sub-sections below.
+Some patterns support multiple variants, or can be configured, using variables and blocks described here.
 
 ##### Service unavailable
+
+Variables:
 
 `availability`
 : Set to `replaced` for the [replaced](https://style-kit.web.bas.ac.uk/patterns/service-unavailable/#replaced) variant.
@@ -626,6 +631,91 @@ Contact the <a href="mailto:servicedesk.bas.ac.uk">BAS IT Service Desk</a> for m
 {% block pattern_content %}
 Contact the <a href="mailto:servicedesk.bas.ac.uk">BAS IT Service Desk</a> for more information.
 {% endblock %}
+```
+
+##### Start
+
+Variables:
+
+`call_to_action_url`
+: Set to the href the call to action button should go to
+
+`call_to_action_variant`
+: Set to `default` for a standard 'start now' call to action button
+  Set to `sign-in-microsoft` for a combined 'sign-in to continue' and 'start now' button
+
+Blocks:
+
+`pattern_content_uses`
+: Set to an unordered list of items for the 'use this service to:' list
+
+`pattern_content`
+: Additional, optional, content such as 'before you begin' or 'more information' sections
+
+For example:
+
+(basic variant)
+
+```jinja2
+{% extends 'bas_style_kit/patterns/bsk_start.j2' %}
+
+{% set call_to_action_url = '#' %}
+
+{% block pattern_content_uses %}
+<ul>
+    <li>A task</li>
+    <li>Another task</li>
+</ul>
+{% endblock %}
+```
+
+(more information variant)
+
+```jinja2
+{% extends 'bas_style_kit/patterns/bsk_start.j2' %}
+
+{% set call_to_action_url = '#' %}
+{% set call_to_action_variant = 'sign-in-microsoft' %}
+
+{% block pattern_content_uses %}
+    <ul>
+        <li>A task</li>
+        <li>Another task</li>
+    </ul>
+{% endblock %}
+
+{% block pattern_content %}
+    <section class="bsk-before-you-start">
+        <h2 class="bsk-h3">Before you start</h2>
+        <p>Before you start information</p>
+    </section>
+    <section class="bsk-more-information">
+        <h2 class="bsk-h3">More information</h2>
+        <p>More information</p>
+    </section>
+{% endblock %}
+```
+
+##### Sign-in (Microsoft)
+
+Variables:
+
+`call_to_action_url`
+: Set to the href the call to action button should go to
+
+Blocks:
+
+`pattern_content`
+: Additional, optional, content such as 'before you begin' or 'more information' sections
+
+For example:
+
+(basic variant)
+
+```jinja2
+{% extends 'bas_style_kit/patterns/bsk_sign-in-microsoft.j2' %}
+
+{% set call_to_action_url = '#' %}
 ```
 
 ## Development

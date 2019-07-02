@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+* 'Sign-in' page pattern
+* 'Start' page pattern
 * `bsk_footer_classes` config option for adding extra classes to standard page footer
 
 ### Fixed
