@@ -64,6 +64,10 @@ app.config['bsk_templates'].bsk_site_nav_primary.append({
         {
             'value': 'Start (sign-in, Microsoft)',
             'href': '/patterns/start-sign-in-microsoft'
+        },
+        {
+            'value': 'Sign-in (Microsoft)',
+            'href': '/patterns/sign-in-microsoft'
         }
     ]
 })
@@ -120,7 +124,8 @@ def render_pattern(pattern: str):
         'service-unavailable',
         'start-basic',
         'start-info',
-        'start-sign-in-microsoft'
+        'start-sign-in-microsoft',
+        'sign-in-microsoft'
     ]
     if pattern not in patterns:
         abort(404)

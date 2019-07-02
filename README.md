@@ -691,6 +691,28 @@ For example:
 {% endblock %}
 ```
 
+##### Sign-in (Microsoft)
+
+Variables:
+
+`call_to_action_url`
+: Set to the href the call to action button should go to
+
+Blocks:
+
+`pattern_content`
+: Additional, optional, content such as 'before you begin' or 'more information' sections
+
+For example:
+
+(basic variant)
+
+```jinja2
+{% extends 'bas_style_kit/patterns/bsk_sign-in-microsoft.j2' %}
+
+{% set call_to_action_url = '#' %}
+```
+
 ## Development
 
 A docker container ran through Docker Compose is used as a development environment for this project. It includes 
