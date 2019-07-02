@@ -1,5 +1,5 @@
 class BskTemplates(object):
-    templates_version = '0.1.0'
+    templates_version = '0.4.0'
     bsk_version = '0.6.0-alpha'
 
     def __init__(self):
@@ -22,11 +22,11 @@ class BskTemplates(object):
         ]
         self.bsk_scripts = [
             {
-                'href': f"https://cdn.web.bas.ac.uk/js-libs/jquery-3.3.1.min.js",
+                'href': f"https://cdn.web.bas.ac.uk/libs/jquery/3.3.1/jquery-3.3.1.min.js",
                 'integrity': 'sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8='
             },
             {
-                'href': f"https://cdn.web.bas.ac.uk/js-libs/js.cookie-2.1.3.min.js",
+                'href': f"https://cdn.web.bas.ac.uk/libs/js-cookie/2.1.3/js.cookie-2.1.3.min.js",
                 'integrity': 'sha256-EareStqgZTnMUqLWtDkCa3SldvB8NPBY8u5C6ZUMWRc='
             },
             {

@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+* Corrected use of deprecated CDN locations
+
 ### Changed
 
 * README tweaks
