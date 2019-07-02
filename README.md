@@ -879,8 +879,9 @@ This process will deploy changes to [PyPi](https://pypi.org/) on all tagged comm
 ### At release:
 
 1. create a `release` branch
-2. close release in CHANGELOG.md
-3. push changes, merge the `release` branch into `master` and tag with version
+2. remove `-develop` suffix from `templates_version` variable in `bas_style_kit_jinja_templates/__init__.py`
+3. close release in CHANGELOG.md
+4. push changes, merge the `release` branch into `master` and tag with version
 
 The project will be built and published to PyPi automatically through [Continuous Deployment](#continuous-deployment).
 
@@ -888,7 +889,8 @@ The project will be built and published to PyPi automatically through [Continuou
 
 1. create a `next-release` branch
 2. bump `templates_version` variable in `bas_style_kit_jinja_templates/__init__.py`
-2. push changes and merge the `next-release` branch into `master`
+3. bump `version` variable in `setup.py`
+4. push changes and merge the `next-release` branch into `master`
 
 ## Feedback
 

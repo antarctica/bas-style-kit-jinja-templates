@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+* Adding missing steps to release process (bumping version in setup.py)
+
 ## [0.4.0] - 2019-04-26 [BREAKING!]
 
 ### Added

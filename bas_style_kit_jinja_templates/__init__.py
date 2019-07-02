@@ -1,5 +1,5 @@
 class BskTemplates(object):
-    templates_version = '0.4.0'
+    templates_version = '0.5.0-release'
     bsk_version = '0.6.0-alpha'
 
     def __init__(self):
