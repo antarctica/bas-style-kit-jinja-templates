@@ -338,6 +338,9 @@ For example:
 {% endblock %}
 ```
 
+You can also set custom classes on the footer element by appending to the `bsk_footer_classes` list, or replacing all 
+classes by overriding the list.
+
 ## Components
 
 All components are located in the `bas_style_kit_jinja_templates` package. Variables are 
@@ -596,9 +599,11 @@ Additional information clarifying details or circumstances.
 {% endblock %}
 ```
 
-Some patterns support multiple variants, or can be configured, using variables described in the sub-sections below.
+Some patterns support multiple variants, or can be configured, using variables and blocks described here.
 
 ##### Service unavailable
+
+Variables:
 
 `availability`
 : Set to `replaced` for the [replaced](https://style-kit.web.bas.ac.uk/patterns/service-unavailable/#replaced) variant.
