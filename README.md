@@ -794,6 +794,7 @@ The project will be built and published to PyPi automatically through [Continuou
 ### After release:
 
 1. create a `next-release` branch
+2. bump `templates_version` variable in `bas_style_kit_jinja_templates/__init__.py`
 2. push changes and merge the `next-release` branch into `master`
 
 ## Feedback
