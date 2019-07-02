@@ -659,6 +659,8 @@ For example:
 ```jinja2
 {% extends 'bas_style_kit/patterns/bsk_start.j2' %}
 
+{% set call_to_action_url = '#' %}
+
 {% block pattern_content_uses %}
 <ul>
     <li>A task</li>
@@ -671,6 +673,9 @@ For example:
 
 ```jinja2
 {% extends 'bas_style_kit/patterns/bsk_start.j2' %}
+
+{% set call_to_action_url = '#' %}
+{% set call_to_action_variant = 'sign-in-microsoft' %}
 
 {% block pattern_content_uses %}
     <ul>
