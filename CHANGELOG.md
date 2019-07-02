@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 * README tweaks
+* Updating internal Flask app dependencies
 
 ## [0.2.0] - 2019-04-26 [BREAKING!]
 
