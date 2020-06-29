@@ -62,7 +62,7 @@ dependencies-app:
 build-app:
   stage: 📦 build
   script:
-    - "python setup.py sdist bdist_wheel"
+    - "poetry build"
   artifacts:
     name: "$CI_BUILD_TOKEN-build"
     paths:
