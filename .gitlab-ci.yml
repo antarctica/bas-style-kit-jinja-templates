@@ -45,6 +45,9 @@ build-app:
   stage: 📦 build
   script:
     - "poetry build"
+  except:
+    - master
+    - tags
   artifacts:
     name: "$CI_BUILD_TOKEN-build"
     paths:
