@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
+* Typo in experimental label name in development phase notice
 * Typo in README example
 * Google Analytics support
 * Adding missing steps to release process (bumping version in setup.py)
