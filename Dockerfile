@@ -10,7 +10,7 @@ ENV FLASK_ENV development
 
 WORKDIR $APPPATH
 
-RUN apk add --no-cache libffi-dev libressl-dev build-base && \
+RUN apk add --no-cache libffi-dev libressl-dev build-base git && \
     pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir poetry==1.0.0
 
