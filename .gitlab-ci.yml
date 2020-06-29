@@ -9,9 +9,6 @@
 # - Variables are grouped by section in KEY: "value" format (e.g. FOO: "bar")
 #   Sensitive values are represented by "[Sensitive]"
 #
-# - Snyk
-# > SNYK_TOKEN: "[Sensitive]"
-#
 # - PyPi (production) - create tokens at https://pypi.org/manage/account/
 # > PYPI_TOKEN (protected): "[Sensitive]"
 #
@@ -27,8 +24,6 @@ stages:
 
 variables:
   APP_NAME: bas-style-kit-jinja-templates
-  SNYK_ORG: antarctica
-  SNYK_PROJECT: bas-style-kit-jinja-templates
 
 image:
   name: docker-registry.data.bas.ac.uk/web-apps/bsk/bas-style-kit-jinja2-templates:latest
@@ -45,19 +40,6 @@ bandit:
   stage: 🧪 test
   script:
     - "bandit -r ."
-
-dependencies-app:
-  stage: 🧪 test
-  image:
-    name: antarctica/snyk-cli:python-3
-    entrypoint: [""]
-  before_script:
-    - "poetry install"
-  script:
-   - "snyk test"
-   - "snyk monitor --project-name=$SNYK_PROJECT --org=$SNYK_ORG"
-  only:
-    - master
 
 build-app:
   stage: 📦 build
