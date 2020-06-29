@@ -16,8 +16,8 @@ app.config["BSK_TEMPLATES"].site_description = "A set of Jinja templates impleme
 
 app.config["BSK_TEMPLATES"].site_styles.append(
     {
-        "href": "https://cdn.web.bas.ac.uk/libs/font-awesome-pro/5.9.0/css/all.min.css",
-        "integrity": "sha256-kanXop/o8YI8mee6ao6HKghRywSQiUisB6pXb6HRsWk=",
+        "href": "https://cdn.web.bas.ac.uk/libs/font-awesome-pro/5.13.0/css/all.min.css",
+        "integrity": "sha256-DjbUjEiuM4tczO997cVF1zbf91BC9OzycscGGk/ZKks=",
     }
 )
 app.config["BSK_TEMPLATES"].bsk_site_nav_primary.append(
