@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed [BREAKING!]
+
+* Config class changed from `bsk_templates` to `BSK_TEMPLATES` for compatibility with Flask
+
 ### Added
 
 * Missing Google Analytics feature test

@@ -1,14 +1,14 @@
-{% if config.bsk_templates.bsk_site_development_phase != 'live-stable' %}
+{% if config.BSK_TEMPLATES.bsk_site_development_phase != 'live-stable' %}
     <div class="{{ content_classes }}">
-        {% if config.bsk_templates.bsk_site_development_phase == 'experimental' %}
-            <span class="bsk-text-uppercase bsk-label bsk-label-{{ config.bsk_templates.bsk_site_development_phase }}">{{ config.bsk_templates.bsk_site_development_phase }}</span>
-            This website is used for testing, your <a href="{{ config.bsk_templates.bsk_site_feedback_href }}">feedback</a> will help us to improve it.
-        {% elif config.bsk_templates.bsk_site_development_phase == 'custom' %}
-            <span class="bsk-text-uppercase bsk-label {{ config.bsk_templates.bsk_site_development_phase_custom.label_classes | join(' ') }}">{{ config.bsk_templates.bsk_site_development_phase_custom.label_text }}</span>
-            {{ config.bsk_templates.bsk_site_development_phase_custom.message_text }}
+        {% if config.BSK_TEMPLATES.bsk_site_development_phase == 'experimental' %}
+            <span class="bsk-text-uppercase bsk-label bsk-label-{{ config.BSK_TEMPLATES.bsk_site_development_phase }}">{{ config.BSK_TEMPLATES.bsk_site_development_phase }}</span>
+            This website is used for testing, your <a href="{{ config.BSK_TEMPLATES.bsk_site_feedback_href }}">feedback</a> will help us to improve it.
+        {% elif config.BSK_TEMPLATES.bsk_site_development_phase == 'custom' %}
+            <span class="bsk-text-uppercase bsk-label {{ config.BSK_TEMPLATES.bsk_site_development_phase_custom.label_classes | join(' ') }}">{{ config.BSK_TEMPLATES.bsk_site_development_phase_custom.label_text }}</span>
+            {{ config.BSK_TEMPLATES.bsk_site_development_phase_custom.message_text }}
         {% else %}
-            <span class="bsk-text-uppercase bsk-label bsk-label-phase-{{ config.bsk_templates.bsk_site_development_phase }}">{{ config.bsk_templates.bsk_site_development_phase }}</span>
-            This is a new website, your <a href="{{ config.bsk_templates.bsk_site_feedback_href }}">feedback</a> will help us to improve it.
+            <span class="bsk-text-uppercase bsk-label bsk-label-phase-{{ config.BSK_TEMPLATES.bsk_site_development_phase }}">{{ config.BSK_TEMPLATES.bsk_site_development_phase }}</span>
+            This is a new website, your <a href="{{ config.BSK_TEMPLATES.bsk_site_feedback_href }}">feedback</a> will help us to improve it.
         {% endif %}
         <hr class="bsk-hr-dashed" />
     </div>

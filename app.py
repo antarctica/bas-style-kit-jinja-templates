@@ -9,17 +9,18 @@ app = Flask(__name__)
 app.jinja_loader = PrefixLoader(
     {"app": FileSystemLoader("templates"), "bas_style_kit": PackageLoader("bas_style_kit_jinja_templates"),}
 )
-app.config["bsk_templates"] = BskTemplates()
-app.config["bsk_templates"].site_title = "BAS Style Kit Jinja Templates"
-app.config["bsk_templates"].bsk_site_nav_brand_text = "BAS Style Kit Jinja Templates"
-app.config["bsk_templates"].site_description = "A set of Jinja templates implementing the BAS Style Kit"
-app.config["bsk_templates"].site_styles.append(
+app.config["BSK_TEMPLATES"] = BskTemplates()
+app.config["BSK_TEMPLATES"].site_title = "BAS Style Kit Jinja Templates"
+app.config["BSK_TEMPLATES"].bsk_site_nav_brand_text = "BAS Style Kit Jinja Templates"
+app.config["BSK_TEMPLATES"].site_description = "A set of Jinja templates implementing the BAS Style Kit"
+
+app.config["BSK_TEMPLATES"].site_styles.append(
     {
         "href": "https://cdn.web.bas.ac.uk/libs/font-awesome-pro/5.9.0/css/all.min.css",
         "integrity": "sha256-kanXop/o8YI8mee6ao6HKghRywSQiUisB6pXb6HRsWk=",
     }
 )
-app.config["bsk_templates"].bsk_site_nav_primary.append(
+app.config["BSK_TEMPLATES"].bsk_site_nav_primary.append(
     {
         "value": "Layouts",
         "items": [
@@ -30,7 +31,7 @@ app.config["bsk_templates"].bsk_site_nav_primary.append(
         ],
     }
 )
-app.config["bsk_templates"].bsk_site_nav_primary.append(
+app.config["BSK_TEMPLATES"].bsk_site_nav_primary.append(
     {
         "value": "Patterns",
         "items": [
@@ -44,7 +45,7 @@ app.config["bsk_templates"].bsk_site_nav_primary.append(
         ],
     }
 )
-app.config["bsk_templates"].bsk_site_nav_primary.append(
+app.config["BSK_TEMPLATES"].bsk_site_nav_primary.append(
     {
         "value": "Features",
         "items": [
@@ -53,10 +54,10 @@ app.config["bsk_templates"].bsk_site_nav_primary.append(
         ],
     }
 )
-app.config["bsk_templates"].bsk_site_nav_primary.append({"value": "Item", "href": "#"})
-app.config["bsk_templates"].bsk_site_nav_secondary.append({"value": "Another Item", "href": "#", "target": "_blank"})
-app.config["bsk_templates"].bsk_site_nav_launcher.append({"value": "Launcher Item", "href": "#"})
-app.config["bsk_templates"].site_analytics["id"] = "UA-64130716-44"
+app.config["BSK_TEMPLATES"].bsk_site_nav_primary.append({"value": "Item", "href": "#"})
+app.config["BSK_TEMPLATES"].bsk_site_nav_secondary.append({"value": "Another Item", "href": "#", "target": "_blank"})
+app.config["BSK_TEMPLATES"].bsk_site_nav_launcher.append({"value": "Launcher Item", "href": "#"})
+app.config["BSK_TEMPLATES"].site_analytics["id"] = "UA-64130716-44"
 
 
 @app.route("/")
