@@ -9,32 +9,32 @@
                 <span class="bsk-icon-bar"></span>
                 <span class="bsk-icon-bar"></span>
             </button>
-            {% if config.bsk_templates.bsk_site_nav_brand_img_href %}
-                <a class="bsk-navbar-brand bsk-navbar-brand-image-{{ config.bsk_templates.bsk_site_nav_brand_img_size }}" href="{{ config.bsk_templates.bsk_site_nav_brand_href }}">
-                    {% if config.bsk_templates.bsk_site_nav_brand_text %}
-                        {{ config.bsk_templates.bsk_site_nav_brand_text }}
-                        <img src="{{ config.bsk_templates.bsk_site_nav_brand_img_href }}" />
+            {% if config.BSK_TEMPLATES.bsk_site_nav_brand_img_href %}
+                <a class="bsk-navbar-brand bsk-navbar-brand-image-{{ config.BSK_TEMPLATES.bsk_site_nav_brand_img_size }}" href="{{ config.BSK_TEMPLATES.bsk_site_nav_brand_href }}">
+                    {% if config.BSK_TEMPLATES.bsk_site_nav_brand_text %}
+                        {{ config.BSK_TEMPLATES.bsk_site_nav_brand_text }}
+                        <img src="{{ config.BSK_TEMPLATES.bsk_site_nav_brand_img_href }}" />
                     {% else %}
-                        <img src="{{ config.bsk_templates.bsk_site_nav_brand_img_href }}" />
+                        <img src="{{ config.BSK_TEMPLATES.bsk_site_nav_brand_img_href }}" />
                     {% endif %}
                 </a>
             {% else %}
-                <a class="bsk-navbar-brand" href="{{ config.bsk_templates.bsk_site_nav_brand_href }}">{{ config.bsk_templates.bsk_site_nav_brand_text }}</a>
+                <a class="bsk-navbar-brand" href="{{ config.BSK_TEMPLATES.bsk_site_nav_brand_href }}">{{ config.BSK_TEMPLATES.bsk_site_nav_brand_text }}</a>
             {% endif %}
         </div>
         <div id="navbar-collapse" class="bsk-collapse bsk-navbar-collapse">
-            {% if config.bsk_templates.bsk_site_nav_primary %}
-                {{ bsk_nav_macros.nav_menu(config.bsk_templates.bsk_site_nav_primary, active_nav_item) }}
+            {% if config.BSK_TEMPLATES.bsk_site_nav_primary %}
+                {{ bsk_nav_macros.nav_menu(config.BSK_TEMPLATES.bsk_site_nav_primary, active_nav_item) }}
             {% endif %}
-            {% if config.bsk_templates.bsk_site_nav_launcher %}
+            {% if config.BSK_TEMPLATES.bsk_site_nav_launcher %}
                 <ul class="bsk-nav bsk-navbar-nav bsk-navbar-right">
                     <li class="bsk-dropdown">
                         <a class="bsk-dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
-                            {{ config.bsk_templates.bsk_site_nav_launcher_title }}
+                            {{ config.BSK_TEMPLATES.bsk_site_nav_launcher_title }}
                             <span class="bsk-caret"></span>
                         </a>
                         <ul class="bsk-dropdown-menu">
-                            {% for item in config.bsk_templates.bsk_site_nav_launcher %}
+                            {% for item in config.BSK_TEMPLATES.bsk_site_nav_launcher %}
                                 <li>
                                     <a {% for attribute, value in item.items() %}{% if attribute != 'value' %}{{ attribute }}="{{ value }}"{% endif %}{% endfor %}>
                                         {{ item.value }}
@@ -45,8 +45,8 @@
                     </li>
                 </ul>
             {% endif %}
-            {% if config.bsk_templates.bsk_site_nav_secondary %}
-                {{ bsk_nav_macros.nav_menu(config.bsk_templates.bsk_site_nav_secondary, active_nav_item, ['bsk-navbar-right']) }}
+            {% if config.BSK_TEMPLATES.bsk_site_nav_secondary %}
+                {{ bsk_nav_macros.nav_menu(config.BSK_TEMPLATES.bsk_site_nav_secondary, active_nav_item, ['bsk-navbar-right']) }}
             {% endif %}
         </div>
     </div>

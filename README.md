@@ -26,35 +26,35 @@ app.jinja_loader = PrefixLoader({
     'app': FileSystemLoader('templates'),
     'bas_style_kit': PackageLoader('bas_style_kit_jinja_templates'),
 })
-app.config['bsk_templates'] = BskTemplates()
+app.config['BSK_TEMPLATES'] = BskTemplates()
 
 # Required/recommended settings
-app.config['bsk_templates'].site_title = 'Example service'
-app.config['bsk_templates'].site_description = 'Service to act as an example'
-app.config['bsk_templates'].bsk_site_nav_brand_text = 'Example service'
-app.config['bsk_templates'].bsk_site_development_phase = 'beta'
-app.config['bsk_templates'].bsk_site_feedback_href = '/feedback'
-app.config['bsk_templates'].bsk_site_footer_policies_cookies_href = '/legal/cookies'
-app.config['bsk_templates'].bsk_site_footer_policies_copyright_href = '/legal/copyright'
-app.config['bsk_templates'].bsk_site_footer_policies_privacy_href = '/legal/privacy'
+app.config['BSK_TEMPLATES'].site_title = 'Example service'
+app.config['BSK_TEMPLATES'].site_description = 'Service to act as an example'
+app.config['BSK_TEMPLATES'].bsk_site_nav_brand_text = 'Example service'
+app.config['BSK_TEMPLATES'].bsk_site_development_phase = 'beta'
+app.config['BSK_TEMPLATES'].bsk_site_feedback_href = '/feedback'
+app.config['BSK_TEMPLATES'].bsk_site_footer_policies_cookies_href = '/legal/cookies'
+app.config['BSK_TEMPLATES'].bsk_site_footer_policies_copyright_href = '/legal/copyright'
+app.config['BSK_TEMPLATES'].bsk_site_footer_policies_privacy_href = '/legal/privacy'
 
 # Optional - add a custom CSS file with a relative URL
-app.config['bsk_templates'].site_styles.append({'href': '/css/app.css'})
+app.config['BSK_TEMPLATES'].site_styles.append({'href': '/css/app.css'})
 # Optional - add a custom JS file with a SRI value
-app.config['bsk_templates'].site_scripts.append({'href': 'https://example.com/js/example.js', 'integrity': 'abc123'})
+app.config['BSK_TEMPLATES'].site_scripts.append({'href': 'https://example.com/js/example.js', 'integrity': 'abc123'})
 # Optional - enable Google Analytics
-app.config['bsk_templates'].site_analytics['id'] = '1234'
+app.config['BSK_TEMPLATES'].site_analytics['id'] = '1234'
 # Optional - choose between the `bsk-container` (used by default) and `bsk-container-fluid` layout container
-app.config['bsk_templates'].bsk_container_classes = ['bsk-container']
+app.config['BSK_TEMPLATES'].bsk_container_classes = ['bsk-container']
 # Optional - add navigation menu items
-app.config['bsk_templates'].bsk_site_nav_primary.append({'value': 'Item', 'href': '#'})
-app.config['bsk_templates'].bsk_site_nav_secondary.append({
-    'value': 'Dropdown', 
+app.config['BSK_TEMPLATES'].bsk_site_nav_primary.append({'value': 'Item', 'href': '#'})
+app.config['BSK_TEMPLATES'].bsk_site_nav_secondary.append({
+    'value': 'Dropdown',
     'items': [
         {'value': 'Sub-item 1', 'href': '#', 'target': '_blank'}
     ]
 })
-app.config['bsk_templates'].bsk_site_nav_launcher.append({'value': 'Related service', 'href': 'https://example.com'})
+app.config['BSK_TEMPLATES'].bsk_site_nav_launcher.append({'value': 'Related service', 'href': 'https://example.com'})
 
 
 @app.route('/')
@@ -198,15 +198,15 @@ Menu item objects have the following properties:
 For example (using a Flask application):
 
 ```python
-app.config['bsk_templates'] = BskTemplates()
-app.config['bsk_templates'].bsk_site_nav_primary.push({'value': 'Item', 'href': '/about'})
-app.config['bsk_templates'].bsk_site_nav_primary.push({'value': 'Another Item', 'href': '#', 'target': '_blank'})
+app.config['BSK_TEMPLATES'] = BskTemplates()
+app.config['BSK_TEMPLATES'].bsk_site_nav_primary.push({'value': 'Item', 'href': '/about'})
+app.config['BSK_TEMPLATES'].bsk_site_nav_primary.push({'value': 'Another Item', 'href': '#', 'target': '_blank'})
 ```
 
 ```python
-app.config['bsk_templates'] = BskTemplates()
-app.config['bsk_templates'].bsk_site_nav_secondary.push({
-    'value': 'Dropdown', 
+app.config['BSK_TEMPLATES'] = BskTemplates()
+app.config['BSK_TEMPLATES'].bsk_site_nav_secondary.push({
+    'value': 'Dropdown',
     'items': [
         {'value': 'Sub-item 1', 'href': 'https://www.example.com'}
     ]
@@ -214,8 +214,8 @@ app.config['bsk_templates'].bsk_site_nav_secondary.push({
 ```
 
 ```python
-app.config['bsk_templates'] = BskTemplates()
-app.config['bsk_templates'].bsk_site_nav_launcher.push({'value': 'Related service', 'href': 'https://example.com'})
+app.config['BSK_TEMPLATES'] = BskTemplates()
+app.config['BSK_TEMPLATES'].bsk_site_nav_launcher.push({'value': 'Related service', 'href': 'https://example.com'})
 ```
 
 #### Active navigation items
@@ -232,8 +232,8 @@ This support doesn't support URL patterns, such as `/foo/{id}` where `{id}` is a
 For example (using flask application):
 
 ```python
-app.config['bsk_templates'] = BskTemplates()
-app.config['bsk_templates'].bsk_site_nav_primary.push({'value': 'Foo', 'href': '/foo'})
+app.config['BSK_TEMPLATES'] = BskTemplates()
+app.config['BSK_TEMPLATES'].bsk_site_nav_primary.push({'value': 'Foo', 'href': '/foo'})
 
 @app.route('/foo/<foo_id>')
 def foo_details(foo_id: str):
@@ -262,13 +262,13 @@ and is by default, the index of each website or application (i.e. `/`).
 For example (using a Flask application):
 
 ```python
-app.config['bsk_templates'] = BskTemplates()
-app.config['bsk_templates'].bsk_site_nav_brand_text = 'Example service'
+app.config['BSK_TEMPLATES'] = BskTemplates()
+app.config['BSK_TEMPLATES'].bsk_site_nav_brand_text = 'Example service'
 ```
 
 ```python
-app.config['bsk_templates'] = BskTemplates()
-app.config['bsk_templates'].bsk_site_nav_brand_img_href = '/assets/img/navbar-brand-img.png'
+app.config['BSK_TEMPLATES'] = BskTemplates()
+app.config['BSK_TEMPLATES'].bsk_site_nav_brand_img_href = '/assets/img/navbar-brand-img.png'
 ```
 
 ### Site development phase
@@ -289,8 +289,8 @@ templates to distinguish between a newly released or mature and well-established
 For example (using a Flask application):
 
 ```python
-app.config['bsk_templates'] = BskTemplates()
-app.config['bsk_templates'].bsk_site_development_phase = 'beta'
+app.config['BSK_TEMPLATES'] = BskTemplates()
+app.config['BSK_TEMPLATES'].bsk_site_development_phase = 'beta'
 ```
 
 #### Experimental site phase
@@ -302,8 +302,8 @@ site phase can be set to `experimental` to use the conventional
 For example (using a Flask application):
 
 ```python
-app.config['bsk_templates'] = BskTemplates()
-app.config['bsk_templates'].bsk_site_development_phase = 'experimental'
+app.config['BSK_TEMPLATES'] = BskTemplates()
+app.config['BSK_TEMPLATES'].bsk_site_development_phase = 'experimental'
 ```
 
 ### Google analytics
@@ -316,8 +316,8 @@ property to relevant Google Analytics property ID.
 For example (using a Flask application):
 
 ```python
-app.config['bsk_templates'] = BskTemplates()
-app.config['bsk_templates'].bsk_site_analytics['id'] = 'UA-12345678'
+app.config['BSK_TEMPLATES'] = BskTemplates()
+app.config['BSK_TEMPLATES'].bsk_site_analytics['id'] = 'UA-12345678'
 ```
 
 ### Footer content
@@ -377,7 +377,7 @@ adding the class instance to `app.config`, otherwise this instance will need to 
 For example (using a Flask application):
 
 ```python
-app.config['bsk_templates'] = BskTemplates()
+app.config['BSK_TEMPLATES'] = BskTemplates()
 ```
 
 Where a *PrefixeLoader* is used, references to resources should include a prefix and a deliminator (`/` by default).
