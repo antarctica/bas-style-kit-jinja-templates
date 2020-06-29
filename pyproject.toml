@@ -1,0 +1,42 @@
+[tool.poetry]
+name = "bas-style-kit-jinja-templates"
+version = "0.0.0"
+license = "OGL-UK-3.0"
+description = "A set of Jinja2 templates implementing the BAS Style Kit"
+authors = [
+  "Felix Fennell <felnne@bas.ac.uk>"
+]
+readme = "README.md"
+homepage = "https://github.com/antarctica/bas-style-kit-jinja-templates"
+repository = "https://github.com/antarctica/bas-style-kit-jinja-templates"
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Development Status :: 5 - Production/Stable",
+  "License :: Other/Proprietary License",
+  "Operating System :: OS Independent",
+  "Intended Audience :: Developers"
+]
+
+packages = [
+  {include = "bas_style_kit_jinja_templates"},
+]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+Jinja2 = "^2.10.1"
+
+[tool.poetry.dev-dependencies]
+black = "^19.10b0"
+bandit = "^1.6.2"
+tomlkit = "^0.5.8"
+Flask = "^1.1.2"
+
+[tool.black]
+line-length = 120
+target-version = ['py38']
+include = '\.pyi?$'
+exclude = ''
+
+[build-system]
+requires = ["poetry>=1.0.0"]
+build-backend = "poetry.masonry.api"

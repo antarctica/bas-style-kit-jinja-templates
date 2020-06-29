@@ -1,7 +1,0 @@
-bandit==1.6.2
-flake8==3.7.7
-Flask==1.0.3
-setuptools==41.0.1
-twine==1.13.0
-wheel==0.33.4
-urllib3==1.25.3
