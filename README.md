@@ -76,7 +76,7 @@ Where `app/layouts/app.j2` is a template located in `templates/layouts/app.j2` w
 templates:
 
 ```jinja2
-{% exnteds 'bas_style_kit/layouts/bsk_standard.j2' %}
+{% extends 'bas_style_kit/layouts/bsk_standard.j2' %}
 ```
 
 ### Using a page pattern
