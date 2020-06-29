@@ -77,6 +77,10 @@ app.config['bsk_templates'].bsk_site_nav_primary.append({
         {
             'value': 'Active nav item',
             'href': '/features/active-nav-item/123abc'
+        },
+        {
+            'value': 'Analytics',
+            'href': '/features/analytics'
         }
     ]
 })
@@ -93,6 +97,7 @@ app.config['bsk_templates'].bsk_site_nav_launcher.append({
     'value': 'Launcher Item',
     'href': '#'
 })
+app.config['bsk_templates'].site_analytics['id'] = 'UA-64130716-44'
 
 
 @app.route('/')
@@ -141,4 +146,12 @@ def render_feature_active_nav_item(dynamic_value: str):
         f"app/features/active_nav_item.j2",
         value=dynamic_value,
         active_nav_item='/features/active-nav-item/123abc'
+    )
+
+
+@app.route('/features/analytics')
+def render_feature_analytics():
+    # noinspection PyUnresolvedReferences
+    return render_template(
+        f"app/features/analytics.j2"
     )
