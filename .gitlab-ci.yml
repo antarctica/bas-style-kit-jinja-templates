@@ -12,25 +12,23 @@
 # - Snyk
 # > SNYK_TOKEN: "[Sensitive]"
 #
-# - PyPi (production)
-# > PYPI_PASSWORD: "[Sensitive]"
+# - PyPi (production) - create tokens at https://pypi.org/manage/account/
+# > PYPI_TOKEN (protected): "[Sensitive]"
 #
-# - PyPi (staging)
-# > PYPI_TEST_PASSWORD: "[Sensitive]"
+# - PyPi (staging) - create tokens at https://test.pypi.org/manage/account/
+# > PYPI_TEST_TOKEN (protected): "[Sensitive]"
 
 # == Global settings ==
 
 stages:
-  - lint
-  - build
-  - publish
+  - 🧪 test
+  - 📦 build
+  - 🚚 publish
 
 variables:
   APP_NAME: bas-style-kit-jinja-templates
   SNYK_ORG: antarctica
   SNYK_PROJECT: bas-style-kit-jinja-templates
-  PYPI_USERNAME: british-antarctic-survey
-  PYPI_TEST_USERNAME: british-antarctic-survey
 
 image:
   name: docker-registry.data.bas.ac.uk/web-apps/bsk/bas-style-kit-jinja2-templates:latest
@@ -38,32 +36,33 @@ image:
 
 # == Jobs ==
 
+black:
+  stage: 🧪 test
+  script:
+    - "black --check bas_style_kit_jinja_templates/"
+
+bandit:
+  stage: 🧪 test
+  script:
+    - "bandit -r ."
+
 dependencies-app:
-  stage: lint
+  stage: 🧪 test
   image:
     name: antarctica/snyk-cli:python-3
     entrypoint: [""]
+  before_script:
+    - "poetry install"
   script:
-   - "pip install -r requirements.txt"
    - "snyk test"
    - "snyk monitor --project-name=$SNYK_PROJECT --org=$SNYK_ORG"
   only:
     - master
 
-pep8-app:
-  stage: lint
-  script:
-    - "flake8 . --ignore=E501"
-
-bandit-app:
-  stage: lint
-  script:
-    - "bandit -r ."
-
 build-app:
-  stage: build
+  stage: 📦 build
   script:
-    - "python setup.py sdist bdist_wheel"
+    - "poetry build"
   artifacts:
     name: "$CI_BUILD_TOKEN-build"
     paths:
@@ -71,9 +70,17 @@ build-app:
     expire_in: 1 month
 
 publish-app-stage:
-  stage: publish
+  stage: 🚚 publish
+  before_script:
+    - "poetry config pypi-token.pypi-testing $PYPI_TEST_TOKEN --local"
+    - "python support/python-packaging/parse_version.py $(git describe --tags) --pyproject"
   script:
-    - "python -m twine upload --repository-url https://test.pypi.org/legacy/ --username $PYPI_TEST_USERNAME --password $PYPI_TEST_PASSWORD --disable-progress-bar --verbose dist/*"
+    - "poetry publish --build --repository pypi-testing --no-interaction"
+  artifacts:
+    name: "$CI_BUILD_TOKEN-build"
+    paths:
+      - dist
+    expire_in: 1 month
   only:
     - master
   environment:
@@ -81,9 +88,17 @@ publish-app-stage:
     url: https://test.pypi.org/project/bas-style-kit-jinja-templates/
 
 publish-app-prod:
-  stage: publish
+  stage: 🚚 publish
+  before_script:
+    - "poetry config pypi-token.pypi $PYPI_TOKEN --local"
+    - "python support/python-packaging/parse_version.py $(git describe --tags) --pyproject"
   script:
-    - "python -m twine upload --username $PYPI_USERNAME --password $PYPI_PASSWORD --disable-progress-bar --verbose dist/*"
+    - "poetry publish --build --repository pypi --no-interaction"
+  artifacts:
+    name: "$CI_BUILD_TOKEN-build"
+    paths:
+      - dist
+    expire_in: 1 month
   only:
     - tags
   environment:

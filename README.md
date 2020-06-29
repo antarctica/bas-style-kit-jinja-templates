@@ -6,7 +6,7 @@ A set of [Jinja2](http://jinja.pocoo.org) templates implementing the [BAS Style 
 
 ### Pip package
 
-The recommended way to get these templates is installing its PyPi package, 
+The recommended way to install these templates is via its PyPi package,
 [`bas-style-kit-jekyll-templates`](https://pypi.org/project/bas-style-kit-jinja-templates/).
 
 ## Usage
@@ -720,61 +720,83 @@ For example:
 
 ## Development
 
-A docker container ran through Docker Compose is used as a development environment for this project. It includes 
-development only dependencies listed in `requirements.txt` and a local Flask application in `app.py`.
+A local Flask application defined in `app.py` is used to develop this project.
 
-Ensure classes and methods are defined within the `bas_style_kit_jinja_templates` package.
+Ensure templates and configuration options for use in this project are defined within the
+`bas_style_kit_jinja_templates` package.
 
-If you have access to the BAS GitLab instance, you pull the Docker image from the BAS Docker Registry:
+### Development environment
 
-```shell
+The `:latest` container image is used for developing this project. It can run locally using Docker and Docker Compose:
+
+```
 $ docker login docker-registry.data.bas.ac.uk
-$ docker-compose pull
+$ docker-compose pull app
+```
 
-# To run the local Flask application using the Flask development server
+To run/test application commands:
+
+```
 $ docker-compose up
-
-# To start a shell
-$ docker-compose run app ash
 ```
 
 ### Code Style
 
 PEP-8 style and formatting guidelines must be used for this project, with the exception of the 80 character line limit.
 
-[Flake8](http://flake8.pycqa.org/) is used to ensure compliance, and is ran on each commit through 
-[Continuous Integration](#continuous-integration). 
+[Black](https://github.com/psf/black) is used to ensure compliance, configured in `pyproject.toml`.
 
-To check compliance locally:
+Black can be [integrated](https://black.readthedocs.io/en/stable/editor_integration.html#pycharm-intellij-idea) with a
+range of editors, such as PyCharm, to perform formatting automatically.
 
-```shell
-$ docker-compose run app flake8 . --ignore=E501
+To apply formatting manually:
+
 ```
+$ docker-compose run app black bas_style_kit_jinja_templates/
+```
+
+To check compliance manually:
+
+```
+$ docker-compose run app black --check bas_style_kit_jinja_templates
+```
+
+Checks are ran automatically in [Continuous Integration](#continuous-integration).
+
+### Python version
+
+When upgrading to a new version of Python, ensure the following are also checked and updated where needed:
+
+* `Dockerfile`:
+    * base stage image (e.g. `FROM python:3.X-alpine` to `FROM python:3.Y-alpine`)
+* `pyproject.toml`:
+    * `[tool.poetry.dependencies]`
+        * `python` (e.g. `python = "^3.X"` to `python = "^3.Y"`)
+    * `[tool.black]`
+        * `target-version` (e.g. `target-version = ['py3X']` to `target-version = ['py3Y']`)
 
 ### Dependencies
 
-Development Python dependencies should be declared in `requirements.txt` to be included in the development environment.
+Python dependencies for this project are managed with [Poetry](https://python-poetry.org) in `pyproject.toml`.
 
-Runtime Python dependencies should be declared in `requirements.txt` and `setup.py` to also be installed as dependencies 
-of this package in other applications.
+Non-code files, such as static files, can also be included in the [Python package](#python-package) using the
+include key in `pyproject.toml`.
 
-All dependencies should be periodically reviewed and update as new versions are released.
+To add a new (development) dependency:
 
-```shell
+```
 $ docker-compose run app ash
-$ pip install [dependency]==
-# this will display a list of available versions, add the latest to `requirements.txt` and or `setup.py`
-$ exit
-$ docker-compose down
-$ docker-compose build
+$ poetry add [dependency] (--dev)
 ```
 
-If you have access to the BAS GitLab instance, push the Docker image to the BAS Docker Registry:
+Then rebuild the development container and push to GitLab:
 
-```shell
-$ docker login docker-registry.data.bas.ac.uk
-$ docker-compose push
 ```
+$ docker-compose build app
+$ docker-compose push app
+```
+
+All dependencies should be periodically reviewed and updated as new versions are released.
 
 #### Dependency vulnerability scanning
 
@@ -827,41 +849,13 @@ Pip dependencies are also [checked and monitored for vulnerabilities](#dependenc
 
 ## Distribution
 
-Both source and binary versions of the package are build using [SetupTools](https://setuptools.readthedocs.io/), which 
-can then be published to the [Python package index](https://pypi.org/project/bas-style-kit-jinja-templates/) for use in 
-other applications. Package settings are defined in `setup.py`.
+This project is distributed as a Python package, hosted in
+[PyPi](https://pypi.org/project/bas-style-kit-jinja-templates/).
 
-This project is built and published to PyPi automatically through [Continuous Deployment](#continuous-deployment).
+Source and binary packages are built and published automatically using [Poetry](https://python-poetry.org) through
+[Continuous Deployment](#continuous-deployment).
 
-To build the source and binary artefacts for this project manually:
-
-```shell
-$ docker-compose run app ash
-# build package to /build, /dist and /bas_style_kit_jinja_templates.egg-info
-$ python setup.py sdist bdist_wheel
-$ exit
-$ docker-compose down
-```
-
-To publish built artefacts for this project manually to [PyPi testing](https://test.pypi.org/):
-
-```shell
-$ docker-compose run app ash
-$ python -m twine upload --repository-url https://test.pypi.org/legacy/ dist/*
-# project then available at: https://test.pypi.org/project/bas-style-kit-jinja-templates/
-$ exit
-$ docker-compose down
-```
-
-To publish manually to [PyPi](https://pypi.org/):
-
-```shell
-$ docker-compose run app ash
-$ python -m twine upload --repository-url https://pypi.org/legacy/ dist/*
-# project then available at: https://pypi.org/project/bas-style-kit-jinja-templates/
-$ exit
-$ docker-compose down
-```
+Package versions are determined automatically using the `support/python-packaging/parse_version.py` script.
 
 ### Continuous Deployment
 

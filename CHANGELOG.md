@@ -10,11 +10,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 * Missing Google Analytics feature test
+* Updating to Python 3.8
 
 ### Fixed
 
 * Google Analytics support
 * Adding missing steps to release process (bumping version in setup.py)
+* Fixing project dependencies to only depend on Jinja2 package, all others moved to developer dependencies
+
+### Changed
+
+* Changing from Flake8 to Black for Pep8 conformance and code formatting
+* Changing from Pip, Twine and SetupTools to Poetry for packaging and distribution
 
 ## [0.4.0] - 2019-04-26 [BREAKING!]
 

@@ -1,18 +1,22 @@
-FROM python:3.6-alpine
+FROM python:3.8-alpine
 
 LABEL maintainer = "Felix Fennell <felnne@bas.ac.uk>"
 
 # Setup project
-WORKDIR /usr/src/app
-
-ENV PYTHONPATH /usr/src/app
+ENV APPPATH /usr/src/app/
+ENV PYTHONPATH $APPPATH
 ENV FLASK_APP app.py
 ENV FLASK_ENV development
 
-# Setup project dependencies
-COPY requirements.txt /usr/src/app/
-RUN pip install --upgrade pip && \
-    pip install -r requirements.txt --no-cache-dir
+WORKDIR $APPPATH
+
+RUN apk add --no-cache libffi-dev libressl-dev build-base && \
+    pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir poetry==1.0.0
+
+COPY pyproject.toml poetry.toml poetry.lock $APPPATH
+RUN poetry update --no-interaction --no-ansi
+RUN poetry install --no-root --no-interaction --no-ansi
 
 # Setup runtime
 ENTRYPOINT []
