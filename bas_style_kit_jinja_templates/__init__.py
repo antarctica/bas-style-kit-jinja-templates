@@ -1,6 +1,6 @@
 class BskTemplates(object):
     templates_version = "0.5.0-release"
-    bsk_version = "0.6.0-alpha"
+    bsk_version = "0.6.0-beta"
 
     def __init__(self):
         self.site_title = "site title"
@@ -17,7 +17,7 @@ class BskTemplates(object):
         self.bsk_styles = [
             {
                 "href": f"https://cdn.web.bas.ac.uk/bas-style-kit/{ self.bsk_version }/css/bas-style-kit.min.css",
-                "integrity": "sha256-YsP5zVtOhiEalahZCyQcl8vG7vyzUJ4aP/yGoPXGOZ0=",
+                "integrity": "sha256-CIM+E9YZgr1hUKQ98wzF/USoPd7OBQl9Y6bWEk0Dqlc=",
             }
         ]
         self.bsk_scripts = [
@@ -31,7 +31,7 @@ class BskTemplates(object):
             },
             {
                 "href": f"https://cdn.web.bas.ac.uk/bas-style-kit/{ self.bsk_version }/js/bas-style-kit.min.js",
-                "integrity": "sha256-pGW+MS4z0IRzUK+7MJrnpc/1FwbD0v0BdP4mvmMlJhw=",
+                "integrity": "sha256-IGaRkrHf/T62GN0E75YL3iLtvmbifinJXfSo8GohRB0=",
             },
         ]
         self.bsk_container_classes = ["bsk-container"]
