@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 * Missing Google Analytics feature test
+* Updating to Python 3.8
 
 ### Fixed
 
