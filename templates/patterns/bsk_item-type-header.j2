@@ -1,0 +1,7 @@
+{% extends "bas_style_kit/layouts/bsk_standard.j2" %}
+{% from "bas_style_kit/macros/bsk_pattern_item_type_header.j2" import pattern_item_type_header %}
+
+{% block main_content %}
+{{ pattern_item_type_header('Item type', 'Item title') }}
+<p>Test content - <a href="/">Back to index</a></p>
+{% endblock %}

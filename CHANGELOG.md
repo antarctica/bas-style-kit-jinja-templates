@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+* Item type header component pattern
 * ORCID component pattern
 * Including contact information to all page patterns
 * Missing 'problem with this service' and 'service unavailable' page pattern examples
