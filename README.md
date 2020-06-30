@@ -63,7 +63,7 @@ def index():
     return render_template(f"app/index.j2")
 ```
 
-Where `app/index.j2` is a template located in `templates/index.j2` which extends an application layout:
+Where `app/index.j2` is a view located in `templates/index.j2` which extends an application layout:
 
 ```jinja2
 {% extends 'app/layouts/app.j2' %}
@@ -72,8 +72,7 @@ Where `app/index.j2` is a template located in `templates/index.j2` which extends
 {% endblock %}
 ```
 
-Where `app/layouts/app.j2` is a template located in `templates/layouts/app.j2` which extends a layout provided by these
-templates:
+This layout in turn extends a layout provided by this package:
 
 ```jinja2
 {% extends 'bas_style_kit/layouts/bsk_standard.j2' %}
@@ -81,22 +80,32 @@ templates:
 
 ### Using a page pattern
 
-To create a page in an application based on a [page pattern](#page-patterns), such as the 
-[page not found](https://style-kit.web.bas.ac.uk/patterns/page-not-found/) pattern, create a template (e.g. 
+To create a page in an application based on a [Page pattern](#page-patterns), such as the
+[page not found](https://style-kit.web.bas.ac.uk/patterns/page-not-found/) pattern, create a template (e.g.
 `templates/errors/404.j2`) with the following:
 
 ```jinja2
 {% extends 'bas_style_kit/patterns/bsk_page-not-found.j2' %}
 ```
 
-To use this template as the 404 error handler in a Flask application:
+To use this template as the 404 error handler in a Flask application for example:
 
 ```python
 @app.errorhandler(404)
 def page_not_found(e):
     # note that we set the 404 status explicitly
     return render_template('app/errors/404.j2'), 404
+```
 
+### Using a component pattern
+
+To use a [Component pattern](#component-pattern), such as the
+[ORCID iD](https://style-kit-testing.web.bas.ac.uk/patterns/orcid-id/) pattern, import and call the relevant Macro:
+
+```jinja2
+{% from "bas_style_kit/macros/bsk_pattern_orcid_id.j2" import pattern_orcid_id %}
+
+<p>{{ pattern_orcid_id('https://sandbox.orcid.org/0000-0001-8373-6934') }}</p>
 ```
 
 ### Using custom CSS/JS
@@ -113,7 +122,7 @@ Non-Style Kit CSS an/or JavaScript resources can be included either as reference
 * CSS files are added as a resource object to the `site_styles` property of the `BskTemplates` class instance
 * JS files are added as a resource object to the `site_scripts` property of the `BskTemplates` class instance
 
-Files will be included after the Style Kit's own resources (where a Style Kit layout is used) to ensure they have 
+Files will be included after the Style Kit's own resources (where a Style Kit layout is used) to ensure they have
 priority.
 
 Each file reference consists of an object with these properties:
@@ -123,7 +132,7 @@ Each file reference consists of an object with these properties:
 | `href`      | String    | Yes      | Any URL        | */css/app.css* / *https://example.com/js/app.js*      |
 | `integrity` | String    | No       | Any SRI value  | *sha256-ClILH8AIH4CkAybtlKhzqqQUYR4eSDiNTK5LIWfF4qQ=* |
 
-For example (using a Flask application with a `css/app.css` file with the default 
+For example (using a Flask application with a `css/app.css` file with the default
 [static files route](http://flask.pocoo.org/docs/1.0/tutorial/static/)):
 
 ```python
@@ -131,11 +140,11 @@ app.config['bsk_templates'] = BskTemplates()
 app.config['bsk_templates'].site_styles.append({'href': '/static/css/app.css'})
 ```
 
-The `integrity` property is used to specify a 
-[Subresource Integrity (SRI)](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) value for 
-a resource. If specified an `integrity` attribute and will be added to the generated markup. A `crossorigin` 
-attribute will also be added for 
-[Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) support with a 
+The `integrity` property is used to specify a
+[Subresource Integrity (SRI)](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) value for
+a resource. If specified an `integrity` attribute and will be added to the generated markup. A `crossorigin`
+attribute will also be added for
+[Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) support with a
 hard-coded, anonymous, value.
 
 #### Using custom CSS/JS inline content
@@ -145,7 +154,7 @@ hard-coded, anonymous, value.
 * inline content will be added after any files to ensure they have priority
 
 **Note:** To append to a block use `{{ super() }}`, rather than replacing the contents of a block.
- 
+
 For example (using a Jinja template):
 
 ```jinja2
@@ -157,7 +166,7 @@ For example (using a Jinja template):
 
 ### Navigation menu items
 
-When using the [bsk_standard layout](#layouts), a [navbar](https://style-kit.web.bas.ac.uk/components/navbar/) is 
+When using the [bsk_standard layout](#layouts), a [navbar](https://style-kit.web.bas.ac.uk/components/navbar/) is
 included as part of the 'standard header', which consists of a cookie banner, navbar and site development phase banner.
 
 This navbar consists of three menus (and other elements, documented elsewhere):
@@ -166,8 +175,8 @@ This navbar consists of three menus (and other elements, documented elsewhere):
 * a secondary navigation menu - aligned right, before the launcher menu
 * a navigation launcher menu - aligned right, after the secondary navigation menu
 
-The navigation launcher is a restricted menu, used to link to other BAS websites and applications. By default it 
-contains links to the [BAS public website](https://www.bas.ac.uk) and the [BAS data catalogue](https://data.bas.ac.uk). 
+The navigation launcher is a restricted menu, used to link to other BAS websites and applications. By default it
+contains links to the [BAS public website](https://www.bas.ac.uk) and the [BAS data catalogue](https://data.bas.ac.uk).
 Other websites and applications can be added as well where relevant.
 
 * primary navigation menu items should be added to the `BskTemplates.bsk_site_nav_primary` variable
@@ -220,13 +229,13 @@ app.config['BSK_TEMPLATES'].bsk_site_nav_launcher.push({'value': 'Related servic
 
 #### Active navigation items
 
-These templates will automatically add the `.bsk-active` class to the relevant navigation item, and if relevant, 
+These templates will automatically add the `.bsk-active` class to the relevant navigation item, and if relevant,
 sub-item, where its `href` attribute exactly matches the current URL given by `{{ request.path }}`.
 
 For example for a navigation item `{'value': 'About', 'href': '/about'}`, when visiting `https://www.example/about`,
 the about navigation item will be made active, as the current path `/about` matches the `href` attribute.
 
-This support doesn't support URL patterns, such as `/foo/{id}` where `{id}` is a dynamic value. In these cases the 
+This support doesn't support URL patterns, such as `/foo/{id}` where `{id}` is a dynamic value. In these cases the
 `active_nav_item` variable can be set to the `href` value of a navigation item to make it active explicitly.
 
 For example (using flask application):
@@ -244,14 +253,14 @@ def foo_details(foo_id: str):
 
 ### Navbar branding
 
-Navbars are used to display the name/identity of a website or application, to remind users where they are. These 
+Navbars are used to display the name/identity of a website or application, to remind users where they are. These
 elements are referred to as 'brand' elements within the Style Kit.
 
 Supported brand elements:
 
-* [brand text](https://style-kit.web.bas.ac.uk/components/navbar/#brand-text) - set using the 
+* [brand text](https://style-kit.web.bas.ac.uk/components/navbar/#brand-text) - set using the
 `BskTemplates.bsk_site_nav_brand_text` property
-* [brand image](https://style-kit.web.bas.ac.uk/components/navbar/#brand-image) - set using the 
+* [brand image](https://style-kit.web.bas.ac.uk/components/navbar/#brand-image) - set using the
 `BskTemplates.bsk_site_nav_brand_img_href` property
 
 Brand elements can be used together or individually, with fix classes applied automatically as needed.
@@ -274,16 +283,16 @@ app.config['BSK_TEMPLATES'].bsk_site_nav_brand_img_href = '/assets/img/navbar-br
 ### Site development phase
 
 The site development phase indicates the stage of development for a website or application, e.g. alpha or live.
-Conventional phases are described in the 
+Conventional phases are described in the
 [Style Kit documentation](https://style-kit.web.bas.ac.uk/core/colours/#development-phase-colours).
 
-For websites or applications that are not firmly in the 'live' phase, a banner should be shown to inform users and 
+For websites or applications that are not firmly in the 'live' phase, a banner should be shown to inform users and
 request feedback. This forms part of the 'standard header' of cookie banner, navbar and site development phase banner.
 
 In these templates, the `BskTemplates.bsk_site_development_phase` property is used to specify the current phase for a
 website or application. When using the [bsk_standard layout](#layouts) the banner will be shown automatically.
 
-To disable this banner, use the `live-stable`. Strictly speaking this isn't a real phase but is recommended by these 
+To disable this banner, use the `live-stable`. Strictly speaking this isn't a real phase but is recommended by these
 templates to distinguish between a newly released or mature and well-established website or application.
 
 For example (using a Flask application):
@@ -295,8 +304,8 @@ app.config['BSK_TEMPLATES'].bsk_site_development_phase = 'beta'
 
 #### Experimental site phase
 
-Where a website or application is in a staging environment, or otherwise used for development/testing activities, the 
-site phase can be set to `experimental` to use the conventional 
+Where a website or application is in a staging environment, or otherwise used for development/testing activities, the
+site phase can be set to `experimental` to use the conventional
 [experimental phase](https://style-kit.web.bas.ac.uk/core/colours/#variants).
 
 For example (using a Flask application):
@@ -308,7 +317,7 @@ app.config['BSK_TEMPLATES'].bsk_site_development_phase = 'experimental'
 
 ### Google analytics
 
-To include the Google Analytics universal tracking library (gtag), set the `BskTemplates.bsk_site_analytics['id']` 
+To include the Google Analytics universal tracking library (gtag), set the `BskTemplates.bsk_site_analytics['id']`
 property to relevant Google Analytics property ID.
 
 **Note:** When used the anonymise IP option in Google Analytics is enabled by default.
@@ -322,8 +331,8 @@ app.config['BSK_TEMPLATES'].bsk_site_analytics['id'] = 'UA-12345678'
 
 ### Footer content
 
-Add custom footer content to the `footer_content` block. It will be shown between the 
-[divider](https://style-kit.web.bas.ac.uk/components/footer/#divider) and 
+Add custom footer content to the `footer_content` block. It will be shown between the
+[divider](https://style-kit.web.bas.ac.uk/components/footer/#divider) and
 [Governance](https://style-kit.web.bas.ac.uk/components/footer/#governance) footer components.
 
 It is recommended to include a [spacer](https://style-kit.web.bas.ac.uk/components/footer/#spacer) component after any
@@ -338,21 +347,246 @@ For example:
 {% endblock %}
 ```
 
-You can also set custom classes on the footer element by appending to the `bsk_footer_classes` list, or replacing all 
+You can also set custom classes on the footer element by appending to the `bsk_footer_classes` list, or replacing all
 classes by overriding the list.
+
+### Patterns
+
+[Patterns](https://style-kit.web.bas.ac.uk/patterns/) demonstrate preferred ways to ask information from, or
+provide information to, end users for various tasks.
+
+There are two types of pattern used in the Style Kit and these templates:
+
+* [Pages](#page-patterns) - standalone pages designed to be used with or without customisation
+* [Components](#component-patterns) - inline elements designed to be used without customisation using [Macros](#macros)
+
+#### Page patterns
+
+Page patterns define content for common pages such as [*Page not found* (404) pages](#using-a-page-pattern).
+
+These templates implement page patterns as layouts/views. Blocks can be used to provide required or additional
+information as needed.
+
+##### Page not found pattern
+
+For example:
+
+(basic variant)
+
+```jinja2
+{% extends 'bas_style_kit/patterns/bsk_page-not-found.j2' %}
+```
+
+##### Problem with this service pattern
+
+Blocks:
+
+`pattern_content`
+: General content, including contact information.
+
+For example:
+
+(basic variant)
+
+```jinja2
+{% extends 'bas_style_kit/patterns/bsk_problem-with-service.j2' %}
+
+{% block pattern_content %}
+<p>Contact the <a href="mailto:team@example.com">Example team</a> for more information.</p>
+{% endblock %}
+```
+
+##### Service unavailable pattern
+
+Variables:
+
+`availability`
+: Set to `replaced` for the [replaced](https://style-kit.web.bas.ac.uk/patterns/service-unavailable/#replaced) variant.
+  Set to `closed` for the [closed](https://style-kit.web.bas.ac.uk/patterns/service-unavailable/#closed) variant.
+
+Blocks:
+
+`pattern_content`
+: General content, including contact information.
+
+For example:
+
+(basic variant)
+
+```jinja2
+{% extends 'bas_style_kit/patterns/bsk_service-unavailable.j2' %}
+
+{% block pattern_content %}
+Contact the <a href="mailto:servicedesk.bas.ac.uk">BAS IT Service Desk</a> for more information.
+{% endblock %}
+```
+
+(closed variant)
+
+```jinja2
+{% extends 'bas_style_kit/patterns/bsk_service-unavailable.j2' %}
+
+{% set availability = 'closed' %}
+
+{% block pattern_content %}
+Contact the <a href="mailto:servicedesk.bas.ac.uk">BAS IT Service Desk</a> for more information.
+{% endblock %}
+```
+
+##### Start pattern
+
+Variables:
+
+`call_to_action_url`
+: Set to the href the call to action button should go to
+
+`call_to_action_variant`
+: Set to `default` for a standard 'start now' call to action button
+  Set to `sign-in-microsoft` for a combined 'sign-in to continue' and 'start now' button
+
+Blocks:
+
+`pattern_content_uses`
+: Set to an unordered list of items for the 'use this service to:' list
+
+`pattern_content`
+: General content, including 'more information' for contact information and 'before you begin' section if needed
+
+For example:
+
+(basic variant)
+
+```jinja2
+{% extends 'bas_style_kit/patterns/bsk_start.j2' %}
+
+{% set call_to_action_url = '#' %}
+
+{% block pattern_content_uses %}
+<ul>
+    <li>A task</li>
+    <li>Another task</li>
+</ul>
+{% endblock %}
+
+{% block pattern_content %}
+    <section class="bsk-before-you-start">
+        <h2 class="bsk-h3">Before you start</h2>
+        <p>Before you start information</p>
+    </section>
+    <section class="bsk-more-information">
+        <h2 class="bsk-h3">More information</h2>
+        <p>Contact the <a href="mailto:servicedesk.bas.ac.uk">BAS IT Service Desk</a> for more information.</p>
+    </section>
+{% endblock %}
+```
+
+(more information variant)
+
+```jinja2
+{% extends 'bas_style_kit/patterns/bsk_start.j2' %}
+
+{% set call_to_action_url = '#' %}
+{% set call_to_action_variant = 'sign-in-microsoft' %}
+
+{% block pattern_content_uses %}
+    <ul>
+        <li>A task</li>
+        <li>Another task</li>
+    </ul>
+{% endblock %}
+
+{% block pattern_content %}
+    <section class="bsk-before-you-start">
+        <h2 class="bsk-h3">Before you start</h2>
+        <p>Before you start information</p>
+    </section>
+    <section class="bsk-more-information">
+        <h2 class="bsk-h3">More information</h2>
+        <p>Contact the <a href="mailto:servicedesk.bas.ac.uk">BAS IT Service Desk</a> for more information.</p>
+        <p>More information</p>
+    </section>
+{% endblock %}
+```
+
+##### Sign-in (Microsoft) pattern
+
+Variables:
+
+`call_to_action_url`
+: Set to the href the call to action button should go to
+
+Blocks:
+
+`pattern_content`
+: Additional, optional, content if needed
+
+For example:
+
+(basic variant)
+
+```jinja2
+{% extends 'bas_style_kit/patterns/bsk_sign-in-microsoft.j2' %}
+
+{% set call_to_action_url = '#' %}
+```
+
+#### Component patterns
+
+These templates include macros for all component patterns. Macro parameters are used for customising each instance of
+the component.
+
+**Note:** Macro parameters are positional, meaning you need to ensure values are provided in the right order to work.
+See the [Style Kit documentation](https://style-kit.web.bas.ac.uk/) for general information on using these patterns.
+
+##### Item type header pattern
+
+Parameters:
+
+`item_type`
+: The type or kind of thing the item is, e.g. if the item is a person, it's type is 'person'.
+
+`item_title`
+: A label specific to the item, e.g. if the item is a person their name.
+
+```jinja2
+{{ pattern_item_type_header('Item type', 'Item title') }}
+```
+
+For example:
+
+```jinja2
+{{ pattern_item_type_header('Person', 'Connie Watson') }}
+```
+
+##### ORCID ID pattern
+
+Parameters:
+
+`orcid_id`
+: The ORCID iD of an individual as a URL
+
+```jinja2
+{{ pattern_orcid_id('orcid_id') }}
+```
+
+For example:
+
+```jinja2
+{{ pattern_orcid_id('https://sandbox.orcid.org/0000-0001-8373-6934') }}
+```
 
 ## Components
 
-All components are located in the `bas_style_kit_jinja_templates` package. Variables are 
-defined in `bas_style_kit_jinja_templates/__init__.py`, with all other components defined in 
+All components are located in the `bas_style_kit_jinja_templates` package. Variables are
+defined in `bas_style_kit_jinja_templates/__init__.py`, with all other components defined in
 `bas_style_kit_jinja_templates//templates/`.
 
 Components that are specific to the Style Kit are prefixed with `bsk--` or `bsk_`.
 
 ### Jinja setup
 
-These templates requiring a *PrefixLoader* and *PackageLoader* 
-[Jinja loader](http://jinja.pocoo.org/docs/2.10/api/#loaders).
+These templates require a *PrefixLoader* and *PackageLoader*
+[Jinja loader](http://jinja.pocoo.org/docs/2.10/api/#loaders) to be loaded into an application:
 
 ```python
 loader = PrefixLoader({
@@ -360,8 +594,18 @@ loader = PrefixLoader({
 })
 ```
 
-Typically your application with have its own templates as well, which can be loaded under a different prefix (such as 
-`app`) using a relevant loader, such as the default *FileSystemloader*.
+To set [Variable](#variables) values used in these templates, a `BskTemplates` class instance is needed. These templates
+assume this instance will be available in Jinja's environment as `config.BSK_TEMPLATES`
+
+For Flask applications this will occur automatically by adding the class instance to the
+[Flask config object](https://flask.palletsprojects.com/en/1.1.x/config/):
+
+```python
+app.config['BSK_TEMPLATES'] = BskTemplates()
+```
+
+Typically applications have their own templates too, which can be loaded under a different prefix (such as `app`) using
+a relevant loader, such as the default *FileSystemloader*.
 
 ```python
 loader = PrefixLoader({
@@ -370,19 +614,9 @@ loader = PrefixLoader({
 })
 ```
 
-In addition, a `BskTemplates` class instance is needed to define [Variable](#variables) values. This instance should be
-available in the Jinja environment as `config.bsk_templates`. For Flask applications this will occur automatically by
-adding the class instance to `app.config`, otherwise this instance will need to be passed manually.
+The use of a *PrefixLoader* means references to resources should include a prefix and a deliminator (`/` by default).
 
-For example (using a Flask application):
-
-```python
-app.config['BSK_TEMPLATES'] = BskTemplates()
-```
-
-Where a *PrefixeLoader* is used, references to resources should include a prefix and a deliminator (`/` by default).
- 
-For example an application layout would change from:
+For example calling an application layout would change from:
 
 ```jinja2
 {% extends "layouts/base.j2" %}
@@ -394,7 +628,7 @@ To:
 {% extends "app/layouts/base.j2" %}
 ```
 
-To use a layout from these templates:
+Or to use a layout from these templates:
 
 ```jinja2
 {% extends "bas_style_kit/layouts/bsk_base.j2" %}
@@ -405,9 +639,9 @@ To use a layout from these templates:
 Layouts are 'base' templates from which views or other layouts inherit. Layouts in these templates are hierarchical,
 with each layout extending the last in this order:
 
-1. `blank.j2`: lowest level layout, intentionally as minimal as possible and not intended for direct use, unless 
+1. `blank.j2`: lowest level layout, intentionally as minimal as possible and not intended for direct use, unless
     non-HTML output is needed
-2. `html.j2`: defines a minimal, accessible, HTML5 structure with some recommended best practices for cross-platform 
+2. `html.j2`: defines a minimal, accessible, HTML5 structure with some recommended best practices for cross-platform
     compatibility
 3. `bsk_base.j2`: intentionally implements the BAS Style Kit as minimally as possible and not intended for direct use,
     unless the `bsk_standard.j2` layout is unsuitable
@@ -435,10 +669,10 @@ Layout content
 
 ### Blocks
 
-[Blocks](http://jinja.pocoo.org/docs/2.10/templates/#template-inheritance) are used for template inheritance and provide 
+[Blocks](http://jinja.pocoo.org/docs/2.10/templates/#template-inheritance) are used for template inheritance and provide
 a logical structure/hierarchy.
 
-Blocks are defined in [Layouts](#layouts), typically with default content using [Includes](#includes). Some blocks are 
+Blocks are defined in [Layouts](#layouts), typically with default content using [Includes](#includes). Some blocks are
 empty, designed for user content or extensibility.
 
 To implement or override a block, redefine it in a template or view:
@@ -460,23 +694,23 @@ content ...
 
 ### Includes
 
-[Includes](http://jinja.pocoo.org/docs/2.10/templates/#include) are used for organising content, to make management 
+[Includes](http://jinja.pocoo.org/docs/2.10/templates/#include) are used for organising content, to make management
 easier, and to allow common elements to be used in multiple places, typically in [Blocks](#blocks).
 
-For example the content needed for [using Google Analytics](#google-analytics) is encapsulated in the 
+For example the content needed for [using Google Analytics](#google-analytics) is encapsulated in the
 `body--analytics-script.j2` include.
 
 ### Macros
 
 [Macros](http://jinja.pocoo.org/docs/2.10/templates/#macros) are used to provide configurable, reusable, functionality.
 
-For example, primary and secondary [navigation menus](#navigation-menu-items) process navigation items the same way, 
-using the `bsk--nav.j2` macro.
+They are used within other components, such as the [navigation menus](#navigation-menu-items) macro for processing
+primary and secondary navigation menus the same way, and to implement [Component patterns](#component-patterns).
 
 ### Variables
 
-Various elements in these templates are configurable, such as the name of the application or website, or the CSS/JS 
-resources to include. A Python class `BskTemplates` is used to configure these elements and which should be passed to 
+Various elements in these templates are configurable, such as the name of the application or website, or the CSS/JS
+resources to include. A Python class `BskTemplates` is used to configure these elements and which should be passed to
 the [Jinja environment](#jinja-setup).
 
 These variables should be changed or set for each website or application:
@@ -520,14 +754,14 @@ These variables may, but don't need to be, changed or set for each website or ap
 : Array of additional JS files
 
 `container_classes`
-: Array of non-Style Kit classes which set the layout of content, including main content and headers/footers which 
+: Array of non-Style Kit classes which set the layout of content, including main content and headers/footers which
   should align the same way
 
 `main_content_classes`
 : Array of non-Style Kit classes which should only be applied to main page content
 
 `bsk_container_classes`
-: Array of Style Kit classes which should set the layout of content, including main content and headers/footers which 
+: Array of Style Kit classes which should set the layout of content, including main content and headers/footers which
   should align the same way
 
 `bsk_main_content_classes`
@@ -576,147 +810,6 @@ These variables must not be changed and should be treated as read only:
 `bsk_version`
 : Version of the Style Kit used by these templates
 
-### Patterns
-
-[Patterns](https://style-kit.web.bas.ac.uk/patterns/) demonstrate preferred ways to ask information from, or 
-provide information to, end users for various tasks. 
-
-#### Page patterns
-
-Page patterns define content for common pages such as [*Page not found* (404) pages](#using-a-page-pattern).
-
-These templates implement page patterns as layouts/views, typically without the need to provide additional information.
-Where additional information is available, such as contact instructions or details about current maintenance etc., the
-`pattern_content` block can be used.
-
-For example:
-
-```jinja2
-{% extends 'bas_style_kit/patterns/bsk_service-unavailable.j2' %}
-
-{% block pattern_content %}
-Additional information clarifying details or circumstances.
-{% endblock %}
-```
-
-Some patterns support multiple variants, or can be configured, using variables and blocks described here.
-
-##### Service unavailable
-
-Variables:
-
-`availability`
-: Set to `replaced` for the [replaced](https://style-kit.web.bas.ac.uk/patterns/service-unavailable/#replaced) variant.
-  Set to `closed` for the [closed](https://style-kit.web.bas.ac.uk/patterns/service-unavailable/#closed) variant.
-
-For example:
-
-(basic variant)
-
-```jinja2
-{% extends 'bas_style_kit/patterns/bsk_service-unavailable.j2' %}
-
-{% block pattern_content %}
-Contact the <a href="mailto:servicedesk.bas.ac.uk">BAS IT Service Desk</a> for more information.
-{% endblock %}
-```
-
-(closed variant)
-
-```jinja2
-{% extends 'bas_style_kit/patterns/bsk_service-unavailable.j2' %}
-
-{% set availability = 'closed' %}
-
-{% block pattern_content %}
-Contact the <a href="mailto:servicedesk.bas.ac.uk">BAS IT Service Desk</a> for more information.
-{% endblock %}
-```
-
-##### Start
-
-Variables:
-
-`call_to_action_url`
-: Set to the href the call to action button should go to
-
-`call_to_action_variant`
-: Set to `default` for a standard 'start now' call to action button
-  Set to `sign-in-microsoft` for a combined 'sign-in to continue' and 'start now' button
-
-Blocks:
-
-`pattern_content_uses`
-: Set to an unordered list of items for the 'use this service to:' list
-
-`pattern_content`
-: Additional, optional, content such as 'before you begin' or 'more information' sections
-
-For example:
-
-(basic variant)
-
-```jinja2
-{% extends 'bas_style_kit/patterns/bsk_start.j2' %}
-
-{% set call_to_action_url = '#' %}
-
-{% block pattern_content_uses %}
-<ul>
-    <li>A task</li>
-    <li>Another task</li>
-</ul>
-{% endblock %}
-```
-
-(more information variant)
-
-```jinja2
-{% extends 'bas_style_kit/patterns/bsk_start.j2' %}
-
-{% set call_to_action_url = '#' %}
-{% set call_to_action_variant = 'sign-in-microsoft' %}
-
-{% block pattern_content_uses %}
-    <ul>
-        <li>A task</li>
-        <li>Another task</li>
-    </ul>
-{% endblock %}
-
-{% block pattern_content %}
-    <section class="bsk-before-you-start">
-        <h2 class="bsk-h3">Before you start</h2>
-        <p>Before you start information</p>
-    </section>
-    <section class="bsk-more-information">
-        <h2 class="bsk-h3">More information</h2>
-        <p>More information</p>
-    </section>
-{% endblock %}
-```
-
-##### Sign-in (Microsoft)
-
-Variables:
-
-`call_to_action_url`
-: Set to the href the call to action button should go to
-
-Blocks:
-
-`pattern_content`
-: Additional, optional, content such as 'before you begin' or 'more information' sections
-
-For example:
-
-(basic variant)
-
-```jinja2
-{% extends 'bas_style_kit/patterns/bsk_sign-in-microsoft.j2' %}
-
-{% set call_to_action_url = '#' %}
-```
 
 ## Development
 
@@ -800,10 +893,10 @@ All dependencies should be periodically reviewed and updated as new versions are
 
 #### Static security scanning
 
-To ensure the security of this API, source code is checked against Bandit for issues such as not sanitising user inputs 
+To ensure the security of this API, source code is checked against Bandit for issues such as not sanitising user inputs
 or using weak cryptography.
 
-**Warning:** Bandit is a static analysis tool and can't check for issues that are only be detectable when running the 
+**Warning:** Bandit is a static analysis tool and can't check for issues that are only be detectable when running the
 application. As with all security tools, Bandit is an aid for spotting common mistakes, not a guarantee of secure code.
 
 Through [Continuous Integration](#continuous-integration), each commit is tested.
@@ -863,12 +956,12 @@ The project will be built and published to PyPi automatically through [Continuou
 
 ## Feedback
 
-The maintainer of this project is the BAS Web & Applications Team, they can be contacted at: 
+The maintainer of this project is the BAS Web & Applications Team, they can be contacted at:
 [servicedesk@bas.ac.uk](mailto:servicedesk@bas.ac.uk).
 
 ## Issue tracking
 
-This project uses issue tracking, see the 
+This project uses issue tracking, see the
 [Issue tracker](https://gitlab.data.bas.ac.uk/web-apps/bsk/bas-style-kit-jinja2-templates/issues) for more information.
 
 **Note:** Read & write access to this issue tracker is restricted. Contact the project maintainer to request access.
@@ -877,7 +970,7 @@ This project uses issue tracking, see the
 
 © UK Research and Innovation (UKRI), 2019, British Antarctic Survey.
 
-You may use and re-use this software and associated documentation files free of charge in any format or medium, under 
+You may use and re-use this software and associated documentation files free of charge in any format or medium, under
 the terms of the Open Government Licence v3.0.
 
 You may obtain a copy of the Open Government Licence at
