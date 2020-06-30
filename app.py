@@ -48,6 +48,7 @@ app.config["BSK_TEMPLATES"].bsk_site_nav_primary.append(
             {"value": "Start (more information)", "href": "/patterns/start-info"},
             {"value": "Start (sign-in, Microsoft)", "href": "/patterns/start-sign-in-microsoft"},
             {"value": "Sign-in (Microsoft)", "href": "/patterns/sign-in-microsoft"},
+            {"value": "ORCID iD", "href": "/patterns/orcid"},
         ],
     }
 )
@@ -98,6 +99,7 @@ def render_pattern(pattern: str):
         "start-info",
         "start-sign-in-microsoft",
         "sign-in-microsoft",
+        "orcid",
     ]
     if pattern not in patterns:
         abort(404)

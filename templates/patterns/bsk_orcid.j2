@@ -1,0 +1,7 @@
+{% extends "bas_style_kit/layouts/bsk_standard.j2" %}
+{% from "bas_style_kit/macros/bsk_pattern_orcid_id.j2" import pattern_orcid_id %}
+
+{% block main_content %}
+<p>{{ pattern_orcid_id('https://sandbox.orcid.org/0000-0001-8373-6934') }}</p>
+<p>Test content - <a href="/">Back to index</a></p>
+{% endblock %}
