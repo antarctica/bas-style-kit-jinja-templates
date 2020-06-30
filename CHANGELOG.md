@@ -30,6 +30,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
+* Feedback links set to open in a new tab/window
 * Changing from Flake8 to Black for Pep8 conformance and code formatting
 * Changing from Pip, Twine and SetupTools to Poetry for packaging and distribution
 
