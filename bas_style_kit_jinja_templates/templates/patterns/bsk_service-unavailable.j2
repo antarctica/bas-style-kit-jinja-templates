@@ -4,11 +4,13 @@
 {% block main_content %}
     <h1 class="bsk-page-header">Sorry, <em>{{ config.BSK_TEMPLATES.bsk_site_nav_brand_text }}</em> is unavailable</h1>
     {% if availability %}
-        <p class="bsk-lead">{{ availability }}</p>
-    {% elif availability == 'replaced' %}
-        <p class="bsk-lead">This service has been replaced and can longer be used.</p>
-    {% elif availability == 'closed' %}
-        <p class="bsk-lead">This service has been closed and can longer be used.</p>
+        {% if availability == 'replaced' %}
+            <p class="bsk-lead">This service has been replaced and can longer be used.</p>
+        {% elif availability == 'closed' %}
+            <p class="bsk-lead">This service has been closed and can longer be used.</p>
+        {% else %}
+            <p class="bsk-lead">{{ availability }}</p>
+        {% endif %}
     {% else %}
         <p class="bsk-lead">You will be able to use the service later.</p>
     {% endif %}
