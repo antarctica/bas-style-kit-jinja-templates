@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.5.0] - 2020-06-30
+
 ### Changed [BREAKING!]
 
 * Config class changed from `bsk_templates` to `BSK_TEMPLATES` for compatibility with Flask
