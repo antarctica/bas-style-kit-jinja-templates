@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 * Including contact information to all page patterns
+* Missing 'problem with this service' and 'service unavailable' page pattern examples
 * Missing Google Analytics feature test
 * Updating to Style Kit 0.6.0-beta
 * Updating to jQuery 3.5.1
@@ -23,6 +24,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
+* Availability options in 'service unavailable' page pattern template
 * Typo in experimental label name in development phase notice
 * Typo in README example
 * Google Analytics support
