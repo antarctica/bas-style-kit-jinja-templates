@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+* Including contact information to all page patterns
 * Missing Google Analytics feature test
 * Updating to Style Kit 0.6.0-beta
 * Updating to jQuery 3.5.1
