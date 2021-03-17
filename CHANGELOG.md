@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 * Updated Python dependencies
+* Updated to jQuery 3.6.0
 
 ## [0.5.0] - 2020-06-30
 
