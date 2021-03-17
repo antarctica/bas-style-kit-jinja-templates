@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+* Example of using a Jinja package loader for application templates
 * Updated Python dependencies
 * Updated to jQuery 3.6.0
 * Updated to BAS Style Kit 0.6.1
