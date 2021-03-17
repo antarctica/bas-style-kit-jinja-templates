@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+* Updated Python dependencies
+* Updated to jQuery 3.6.0
+* Updated to BAS Style Kit 0.6.1
+
 ## [0.5.0] - 2020-06-30
 
 ### Changed [BREAKING!]

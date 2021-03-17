@@ -1,6 +1,6 @@
 class BskTemplates(object):
     templates_version = "0.5.0-release"
-    bsk_version = "0.6.0-beta"
+    bsk_version = "0.6.1"
 
     def __init__(self):
         self.site_title = "site title"
@@ -17,13 +17,13 @@ class BskTemplates(object):
         self.bsk_styles = [
             {
                 "href": f"https://cdn.web.bas.ac.uk/bas-style-kit/{ self.bsk_version }/css/bas-style-kit.min.css",
-                "integrity": "sha256-CIM+E9YZgr1hUKQ98wzF/USoPd7OBQl9Y6bWEk0Dqlc=",
+                "integrity": "sha256-k05vjok9IGTMBJ8KYnQYX9sEc7A9eGWsTM8tQ2XqE8A=",
             }
         ]
         self.bsk_scripts = [
             {
-                "href": f"https://cdn.web.bas.ac.uk/libs/jquery/3.5.1/js/jquery-3.5.1.min.js",
-                "integrity": "sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=",
+                "href": f"https://cdn.web.bas.ac.uk/libs/jquery/3.6.0/js/jquery-3.6.0.min.js",
+                "integrity": "sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=",
             },
             {
                 "href": f"https://cdn.web.bas.ac.uk/libs/js-cookie/2.2.1/js/js.cookie-2.2.1.min.js",
@@ -31,7 +31,7 @@ class BskTemplates(object):
             },
             {
                 "href": f"https://cdn.web.bas.ac.uk/bas-style-kit/{ self.bsk_version }/js/bas-style-kit.min.js",
-                "integrity": "sha256-IGaRkrHf/T62GN0E75YL3iLtvmbifinJXfSo8GohRB0=",
+                "integrity": "sha256-cW+jowQERFqjJwdZ1VSZgG7dXQly19ykM5kVIONXmFg=",
             },
         ]
         self.bsk_container_classes = ["bsk-container"]

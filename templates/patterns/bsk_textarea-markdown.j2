@@ -1,0 +1,16 @@
+{% extends "bas_style_kit/layouts/bsk_standard.j2" %}
+
+{% block main_content %}
+<fieldset>
+    <div class="bsk-form-group">
+        <label for="content">Markdown textarea</label>
+        <textarea id="content" class="bsk-form-control" name="content" rows="8"></textarea>
+    </div>
+    <div class="bsk-help-block bsk-text-muted">
+        <i class="fab fa-markdown"></i>
+        You can use <a href="https://commonmark.org/help/">Markdown</a> to format your message.
+    </div>
+</fieldset>
+
+<p>Test content - <a href="/">Back to index</a></p>
+{% endblock %}

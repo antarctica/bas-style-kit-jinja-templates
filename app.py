@@ -50,6 +50,7 @@ app.config["BSK_TEMPLATES"].bsk_site_nav_primary.append(
             {"value": "Sign-in (Microsoft)", "href": "/patterns/sign-in-microsoft"},
             {"value": "ORCID iD", "href": "/patterns/orcid"},
             {"value": "Item type header", "href": "/patterns/item-type-header"},
+            {"value": "Markdown textarea", "href": "/patterns/textarea-markdown"},
         ],
     }
 )
@@ -102,6 +103,7 @@ def render_pattern(pattern: str):
         "sign-in-microsoft",
         "orcid",
         'item-type-header',
+        'textarea-markdown',
     ]
     if pattern not in patterns:
         abort(404)
