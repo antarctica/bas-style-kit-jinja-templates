@@ -63,6 +63,8 @@ def index():
     return render_template(f"app/index.j2")
 ```
 
+See the [Jinja setup](#jinja-setup) section for other ways of loading templates.
+
 Where `app/index.j2` is a view located in `templates/index.j2` which extends an application layout:
 
 ```jinja2
@@ -614,7 +616,18 @@ loader = PrefixLoader({
 })
 ```
 
-The use of a *PrefixLoader* means references to resources should include a prefix and a deliminator (`/` by default).
+Or a *PackageLoader* (this assumes there is a package named `foo` and that has a module conventionally named 
+`templates`:
+
+```python
+loader = PrefixLoader({
+    'app': PackageLoader('foo'),
+    'bas_style_kit': PackageLoader('bas-style-kit-jekyll-templates')
+})
+```
+
+In either case, use of a *PrefixLoader* means references to resources should include a prefix and a deliminator 
+(`/` by default).
 
 For example calling an application layout would change from:
 
