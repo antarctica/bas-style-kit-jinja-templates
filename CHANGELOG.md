@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed
+
+* Switching to `src/` directory layout for package
+  [#31](https://gitlab.data.bas.ac.uk/web-apps/bsk/bas-style-kit-jinja2-templates/-/issues/31)
+* Using Poetry for local development environments
+  [#29](https://gitlab.data.bas.ac.uk/web-apps/bsk/bas-style-kit-jinja2-templates/-/issues/29)
+
 ## [0.6.0] - 2021-03-17
 
 ### Added
