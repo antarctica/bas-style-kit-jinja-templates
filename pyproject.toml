@@ -17,10 +17,6 @@ classifiers = [
   "Intended Audience :: Developers"
 ]
 
-packages = [
-  {include = "bas_style_kit_jinja_templates"},
-]
-
 [tool.poetry.dependencies]
 python = "^3.6"
 Jinja2 = "^2.10.1"
