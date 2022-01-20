@@ -38,8 +38,8 @@ lint:
   needs: []
   script:
     - "poetry check"
-    - "poetry run black --check src/ app.py"
-    - "poetry run bandit -r src/ app.py"
+    - "poetry run flake8 src/"
+    - "poetry export --without-hashes -f requirements.txt | poetry run safety check --full-report --stdin"
   rules:
     - changes:
         - '**/*.py'
