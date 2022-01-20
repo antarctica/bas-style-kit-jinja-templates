@@ -9,6 +9,8 @@ A set of [Jinja2](http://jinja.pocoo.org) templates implementing the [BAS Style 
 The recommended way to install these templates is via its PyPi package,
 [`bas-style-kit-jekyll-templates`](https://pypi.org/project/bas-style-kit-jinja-templates/).
 
+**Note:** Since version 0.7.0, this package requires Jinja 3.0 or greater for compatibility with Flask 2.0.
+
 ## Usage
 
 ### Quickstart
@@ -317,7 +319,7 @@ app.config['BSK_TEMPLATES'] = BskTemplates()
 app.config['BSK_TEMPLATES'].bsk_site_development_phase = 'experimental'
 ```
 
-### Google analytics
+### Google Analytics
 
 To include the Google Analytics universal tracking library (gtag), set the `BskTemplates.bsk_site_analytics['id']`
 property to relevant Google Analytics property ID.
@@ -616,7 +618,7 @@ loader = PrefixLoader({
 })
 ```
 
-Or a *PackageLoader* (this assumes there is a package named `foo` and that has a module conventionally named 
+Or a *PackageLoader* (this assumes there is a package named `foo` and that has a module conventionally named
 `templates`:
 
 ```python
@@ -626,7 +628,7 @@ loader = PrefixLoader({
 })
 ```
 
-In either case, use of a *PrefixLoader* means references to resources should include a prefix and a deliminator 
+In either case, use of a *PrefixLoader* means references to resources should include a prefix and a deliminator
 (`/` by default).
 
 For example calling an application layout would change from:
@@ -823,102 +825,132 @@ These variables must not be changed and should be treated as read only:
 `bsk_version`
 : Version of the Style Kit used by these templates
 
-
 ## Development
 
-A local Flask application defined in `app.py` is used to develop this project.
-
-Ensure templates and configuration options for use in this project are defined within the
-`bas_style_kit_jinja_templates` package.
+These templates are developed as a Python library `bas_style_kit_jinja_templates`. A bundled Flask application 
+(`app.py`) is used to simulate its usage.
 
 ### Development environment
 
-The `:latest` container image is used for developing this project. It can run locally using Docker and Docker Compose:
+Git and [Poetry](https://python-poetry.org) are required to set up a local development environment of this application.
 
-```
-$ docker login docker-registry.data.bas.ac.uk
-$ docker-compose pull app
+**Note:** If you use [Pyenv](https://github.com/pyenv/pyenv), this project sets a local Python version for consistency.
+
+If you have access to the [BAS GitLab instance](https://gitlab.data.bas.ac.uk):
+
+```shell
+# clone from the BAS GitLab instance if possible
+$ git clone https://gitlab.data.bas.ac.uk/web-apps/bsk/bas-style-kit-jinja2-templates.git
+
+# alternatively, clone from the GitHub mirror
+$ git clone https://github.com/antarctica/bas-style-kit-jinja-templates.git
+
+# setup virtual environment
+$ cd bas-style-kit-jinja2-templates
+$ poetry install
 ```
 
-To run/test application commands:
+To run the bundled Flask app:
 
+```shell
+$ poetry run flask run
 ```
-$ docker-compose up
-```
+
+Then visit: [localhost:5000](http://localhost:5000).
 
 ### Code Style
 
-PEP-8 style and formatting guidelines must be used for this project, with the exception of the 80 character line limit.
+PEP-8 style and formatting guidelines must be used for this project, except the 80 character line limit.
+[Black](https://github.com/psf/black) is used for formatting, configured in `pyproject.toml` and enforced as part of
+[Python code linting](#code-linting-python).
 
-[Black](https://github.com/psf/black) is used to ensure compliance, configured in `pyproject.toml`.
-
-Black can be [integrated](https://black.readthedocs.io/en/stable/editor_integration.html#pycharm-intellij-idea) with a
-range of editors, such as PyCharm, to perform formatting automatically.
+Black can be integrated with a range of editors, such as
+[PyCharm](https://black.readthedocs.io/en/stable/integrations/editors.html#pycharm-intellij-idea), to apply formatting
+automatically when saving files.
 
 To apply formatting manually:
 
-```
-$ docker-compose run app black bas_style_kit_jinja_templates/
-```
-
-To check compliance manually:
-
-```
-$ docker-compose run app black --check bas_style_kit_jinja_templates
+```shell
+$ poetry run black src/ app.py
 ```
 
-Checks are ran automatically in [Continuous Integration](#continuous-integration).
+### Code Linting
 
-### Python version
+[Flake8](https://flake8.pycqa.org) and various extensions are used to lint Python files. Specific checks, and any 
+configuration options, are documented in the `./.flake8` config file.
 
-When upgrading to a new version of Python, ensure the following are also checked and updated where needed:
+To check files manually:
 
-* `Dockerfile`:
-    * base stage image (e.g. `FROM python:3.X-alpine` to `FROM python:3.Y-alpine`)
-* `pyproject.toml`:
-    * `[tool.poetry.dependencies]`
-        * `python` (e.g. `python = "^3.X"` to `python = "^3.Y"`)
-    * `[tool.black]`
-        * `target-version` (e.g. `target-version = ['py3X']` to `target-version = ['py3Y']`)
+```shell
+$ poetry run flake8 src/
+```
+
+Checks are run automatically in [Continuous Integration](#continuous-integration).
 
 ### Dependencies
 
 Python dependencies for this project are managed with [Poetry](https://python-poetry.org) in `pyproject.toml`.
 
 Non-code files, such as static files, can also be included in the [Python package](#python-package) using the
-include key in `pyproject.toml`.
+`include` key in `pyproject.toml`.
+
+#### Adding new dependencies
 
 To add a new (development) dependency:
 
-```
-$ docker-compose run app ash
-$ poetry add [dependency] (--dev)
-```
-
-Then rebuild the development container and push to GitLab:
-
-```
-$ docker-compose build app
-$ docker-compose push app
+```shell
+$ poetry add (--dev) [dependency]
 ```
 
-All dependencies should be periodically reviewed and updated as new versions are released.
+Then update the Docker image used for CI/CD builds and push to the BAS Docker Registry (which is provided by GitLab):
 
-#### Static security scanning
+```shell
+$ docker build -f gitlab-ci.Dockerfile -t docker-registry.data.bas.ac.uk/web-apps/bsk/bas-style-kit-jinja2-templates:latest .
+$ docker push docker-registry.data.bas.ac.uk/web-apps/bsk/bas-style-kit-jinja2-templates:latest
+```
 
-To ensure the security of this API, source code is checked against Bandit for issues such as not sanitising user inputs
-or using weak cryptography.
+#### Updating dependencies
 
-**Warning:** Bandit is a static analysis tool and can't check for issues that are only be detectable when running the
-application. As with all security tools, Bandit is an aid for spotting common mistakes, not a guarantee of secure code.
+```shell
+$ poetry update
+```
 
-Through [Continuous Integration](#continuous-integration), each commit is tested.
+See the instructions above to update the Docker image used in CI/CD.
+
+#### Dependency vulnerability checks
+
+The [Safety](https://pypi.org/project/safety/) package is used to check dependencies against known vulnerabilities.
+
+**IMPORTANT!** As with all security tools, Safety is an aid for spotting common mistakes, not a guarantee of secure
+code. In particular this is using the free vulnerability database, which is updated less frequently than paid options.
+
+This is a good tool for spotting low-hanging fruit in terms of vulnerabilities. It isn't a substitute for proper
+vetting of dependencies, or a proper audit of potential issues by security professionals. If in any doubt you MUST seek
+proper advice.
+
+Checks are run automatically in [Continuous Integration](#continuous-integration).
 
 To check locally:
 
 ```shell
-$ docker-compose run app bandit -r .
+$ poetry export --without-hashes -f requirements.txt | poetry run safety check --full-report --stdin
 ```
+
+### Static security scanning
+
+To ensure the security of this API, source code is checked against [Bandit](https://github.com/PyCQA/bandit)
+and enforced as part of [Python code linting](#code-linting-python).
+
+**Warning:** Bandit is a static analysis tool and can't check for issues that are only be detectable when running the
+application. As with all security tools, Bandit is an aid for spotting common mistakes, not a guarantee of secure code.
+
+To check manually:
+
+```shell
+$ poetry run bandit -r src/ app.py
+```
+
+Checks are run automatically in [Continuous Integration](#continuous-integration).
 
 ## Testing
 
@@ -930,32 +962,27 @@ Pip dependencies are also [checked and monitored for vulnerabilities](#dependenc
 
 ## Distribution
 
-This project is distributed as a Python package, hosted in
+This project is distributed as a Python package, hosted in 
 [PyPi](https://pypi.org/project/bas-style-kit-jinja-templates/).
 
-Source and binary packages are built and published automatically using [Poetry](https://python-poetry.org) through
-[Continuous Deployment](#continuous-deployment).
+Source and binary packages are built and published automatically using
+[Poetry](https://python-poetry.org) in [Continuous Deployment](#continuous-deployment).
 
-Package versions are determined automatically using the `support/python-packaging/parse_version.py` script.
+**Note:** Except for tagged releases, Python packages built in CD will use `0.0.0` as a version to indicate they are
+not formal releases.
 
 ### Continuous Deployment
 
-A Continuous Deployment process using GitLab's CI/CD platform is configured in `.gitlab-ci.yml`. This will:
-
-* build the source and binary artefacts for this project
-* publish built artefacts for this project to the relevant PyPi repository
-
-This process will deploy changes to [PyPi testing](https://test.pypi.org/) on all commits to the master branch.
-
-This process will deploy changes to [PyPi](https://pypi.org/) on all tagged commits.
+A Continuous Deployment process using GitLab's CI/CD platform is configured in `.gitlab-ci.yml`.
 
 ## Release procedure
 
 ### At release:
 
 1. create a `release` branch
-3. close release in CHANGELOG.md
-4. push changes, merge the `release` branch into `master` and tag with version
+2. close release in CHANGELOG.md
+3. bump the package version as needed in `pyproject.toml`
+4. push changes, merge the `release` branch into `main` and tag with version
 
 The project will be built and published to PyPi automatically through [Continuous Deployment](#continuous-deployment).
 
@@ -977,12 +1004,24 @@ This project uses issue tracking, see the
 
 **Note:** Read & write access to this issue tracker is restricted. Contact the project maintainer to request access.
 
-## License
+# Licence
 
-© UK Research and Innovation (UKRI), 2019 - 2021, British Antarctic Survey.
+Copyright (c) 2019-2022 UK Research and Innovation (UKRI), British Antarctic Survey.
 
-You may use and re-use this software and associated documentation files free of charge in any format or medium, under
-the terms of the Open Government Licence v3.0.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-You may obtain a copy of the Open Government Licence at
-[http://www.nationalarchives.gov.uk/doc/open-government-licence/](http://www.nationalarchives.gov.uk/doc/open-government-licence/)
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

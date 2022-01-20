@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "bas-style-kit-jinja-templates"
-version = "0.0.0"
-license = "OGL-UK-3.0"
+version = "0.7.0"
+license = "MIT"
 description = "A set of Jinja2 templates implementing the BAS Style Kit"
 authors = [
   "Felix Fennell <felnne@bas.ac.uk>"
@@ -18,8 +18,8 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.6"
 Jinja2 = "^3.0.3"
+python = "^3.6"
 
 [tool.poetry.dev-dependencies]
 flake8 = "^4.0.1"
