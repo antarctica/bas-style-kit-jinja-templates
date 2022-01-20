@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 
+* Updating CI/CD configuration
+  [#32](https://gitlab.data.bas.ac.uk/web-apps/bsk/bas-style-kit-jinja2-templates/-/issues/32)
 * Switching to `src/` directory layout for package
   [#31](https://gitlab.data.bas.ac.uk/web-apps/bsk/bas-style-kit-jinja2-templates/-/issues/31)
 * Using Poetry for local development environments
