@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Changed [BREAKING!]
+
+* Jinja2 3.x required (for compatibility with Flask 2.0)
+  [#34](https://gitlab.data.bas.ac.uk/web-apps/flask-extensions/flask-azure-oauth/-/issues/34)
+
+### Added
+
+* Updating dependencies (notably Jinja)
+  [#34](https://gitlab.data.bas.ac.uk/web-apps/bsk/bas-style-kit-jinja2-templates/-/issues/34)
+
 ### Changed
 
 * Updating CI/CD configuration

@@ -19,13 +19,13 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.6"
-Jinja2 = "^2.10.1"
+Jinja2 = "^3.0.3"
 
 [tool.poetry.dev-dependencies]
 black = "^19.10b0"
 bandit = "^1.7.0"
-tomlkit = "^0.5.8"
-Flask = "^1.1.2"
+tomlkit = "^0.8.0"
+Flask = "^2.0.2"
 
 [tool.black]
 line-length = 120
