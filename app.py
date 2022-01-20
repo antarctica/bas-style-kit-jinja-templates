@@ -102,8 +102,8 @@ def render_pattern(pattern: str):
         "start-sign-in-microsoft",
         "sign-in-microsoft",
         "orcid",
-        'item-type-header',
-        'textarea-markdown',
+        "item-type-header",
+        "textarea-markdown",
     ]
     if pattern not in patterns:
         abort(404)
