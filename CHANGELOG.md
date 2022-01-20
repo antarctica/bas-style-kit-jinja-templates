@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Added
 
+* Flake8 linting
+  [#33](https://gitlab.data.bas.ac.uk/web-apps/bsk/bas-style-kit-jinja2-templates/-/issues/33)
 * Updating dependencies (notably Jinja)
   [#34](https://gitlab.data.bas.ac.uk/web-apps/bsk/bas-style-kit-jinja2-templates/-/issues/34)
 

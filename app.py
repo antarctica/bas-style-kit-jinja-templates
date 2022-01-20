@@ -1,13 +1,14 @@
-from flask import Flask, render_template, abort
-
-# noinspection PyPackageRequirements
-from jinja2 import PrefixLoader, PackageLoader, FileSystemLoader
+from flask import abort, Flask, render_template
+from jinja2 import FileSystemLoader, PackageLoader, PrefixLoader
 
 from bas_style_kit_jinja_templates import BskTemplates
 
 app = Flask(__name__)
 app.jinja_loader = PrefixLoader(
-    {"app": FileSystemLoader("templates"), "bas_style_kit": PackageLoader("bas_style_kit_jinja_templates"),}
+    {
+        "app": FileSystemLoader("templates"),
+        "bas_style_kit": PackageLoader("bas_style_kit_jinja_templates"),
+    }
 )
 app.config["BSK_TEMPLATES"] = BskTemplates()
 app.config["BSK_TEMPLATES"].site_title = "BAS Style Kit Jinja Templates"
@@ -72,7 +73,7 @@ app.config["BSK_TEMPLATES"].site_analytics["id"] = "UA-64130716-44"
 @app.route("/")
 def index():
     # noinspection PyUnresolvedReferences
-    return render_template(f"app/index.j2")
+    return render_template("app/index.j2")
 
 
 @app.route("/layouts/<layout>")
@@ -116,11 +117,11 @@ def render_pattern(pattern: str):
 def render_feature_active_nav_item(dynamic_value: str):
     # noinspection PyUnresolvedReferences
     return render_template(
-        f"app/features/active_nav_item.j2", value=dynamic_value, active_nav_item="/features/active-nav-item/123abc"
+        "app/features/active_nav_item.j2", value=dynamic_value, active_nav_item="/features/active-nav-item/123abc"
     )
 
 
 @app.route("/features/analytics")
 def render_feature_analytics():
     # noinspection PyUnresolvedReferences
-    return render_template(f"app/features/analytics.j2")
+    return render_template("app/features/analytics.j2")
