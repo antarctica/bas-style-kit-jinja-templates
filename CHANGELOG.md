@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 * Jinja2 3.x required (for compatibility with Flask 2.0)
   [#34](https://gitlab.data.bas.ac.uk/web-apps/flask-extensions/flask-azure-oauth/-/issues/34)
+* Relicensing project under the MIT licence (from the UK Open Government Licence)
+  [#30](https://gitlab.data.bas.ac.uk/web-apps/flask-extensions/flask-azure-oauth/-/issues/30)
 
 ### Added
 
