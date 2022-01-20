@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "bas-style-kit-jinja-templates"
-version = "0.0.0"
+version = "0.7.0"
 license = "MIT"
 description = "A set of Jinja2 templates implementing the BAS Style Kit"
 authors = [
