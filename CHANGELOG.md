@@ -1,4 +1,4 @@
-# ...
+# BAS Style Kit Jinja Templates - Change log
 
 All notable changes to this project will be documented in this file.
 
@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+### Fixed
+
+* Typo in back to top target include
+  [#35](https://gitlab.data.bas.ac.uk/web-apps/flask-extensions/flask-azure-oauth/-/issues/35)
 
 ## [0.7.0] - 2022-01-20 [BREAKING!]
 
